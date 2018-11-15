@@ -1,0 +1,30 @@
+<%- partial('common/head') %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<body>
+    <div id="container">
+        <%- partial('common/header') %>
+        <div class="outer">
+            <% if (theme.customize.profile.enabled && !is_post()) { %>
+                <%- partial('common/profile', null, {cache: !config.relative_link}) %>
+            <% } %>
+            <% if (is_post()) { %>
+                <script type='text/javascript'>
+                $('body').append("<style type='text/css'>@media screen and (min-width: 1200px) { #main {margin: auto; width: 70%; display: block; float:none;}}</style>");
+                </script>
+                <script type='text/javascript'>
+                document.querySelector('style').textContent += "@media screen and (max-width: 1199px) and (min-width: 800px) { #main {margin: auto; width: 70%; display: block; float:none;}}"
+                </script>
+            <% } %>
+            <section id="main"><%- body %></section>
+            <% if (is_home() && theme.home_sidebar) { %>
+                <%- partial('common/sidebar', null, {cache: !config.relative_link}) %>
+            <% } %>
+            <% if (is_post() && theme.post_sidebar) { %>
+                <%- partial('common/sidebar', null, {cache: !config.relative_link}) %>
+            <% } %>
+        </div>
+        <%- partial('common/footer', null, {cache: !config.relative_link}) %>
+        <%- partial('common/scripts') %>
+    </div>
+</body>
+</html>

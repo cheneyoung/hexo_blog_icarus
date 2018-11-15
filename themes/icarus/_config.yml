@@ -1,0 +1,105 @@
+# Menus
+menu:
+  Home: .
+  Archives: archives
+  Categories: categories
+  Tags: tags
+  About: about
+
+# Customize
+customize:
+    logo:
+        enabled: true
+        width: 40
+        height: 40
+        url: images/horse.jpg
+    profile:
+        enabled: true # Whether to show profile bar
+        avatar: css/images/profile_pic.jpg
+        gravatar: # Gravatar email address, if you enable Gravatar, your avatar config will be overriden
+        author: Zuoyang
+        author_title: AI Developer
+        location: Hangzhou,China
+        follow: https://www.linkedin.com/in/yang-zuo-39a99b88/
+    highlight: tomorrow-night
+    sidebar: right # sidebar position, options: left, right
+    thumbnail: false # enable posts thumbnail, options: true, false
+    favicon: css/images/horse.jpg # path to favicon
+    social_links:
+        home:
+            link: http://cheneyoung.github.io
+            title: Profile
+        linkedin:
+            link: https://www.linkedin.com/in/yang-zuo-39a99b88/
+            title: LinkedIn
+        github: 
+            link: https://github.com/cheneyoung
+            title: GitHub
+        envelope-square:
+            link: mailto:zuoyang_pku@163.com
+            title: Mailme
+        # rss: 
+    social_link_tooltip: true # enable the social link tooltip, options: true, false
+
+auto_excerpt:
+    enable: true 
+    lines: 3
+# Widgets
+widgets:
+    # - recent_posts
+    - category
+      #- archive
+      #- tag
+    - tagcloud
+    - links
+
+# Search
+search:
+    insight: true # you need to install `hexo-generator-json-content` before using Insight Search
+    swiftype: # enter swiftype install key here
+    baidu: false # you need to disable other search engines to use Baidu search, options: true, false
+
+# Comment
+comment:
+    disqus: # enter disqus shortname here
+    duoshuo: # enter duoshuo shortname here
+    youyan: # enter youyan uid here
+    facebook: true
+    isso: # enter the domain name of your own comment isso server eg. comments.example.com
+
+# Share
+share: default # options: jiathis, bdshare, addtoany, default
+
+# Plugins
+plugins:
+    lightgallery: true # options: true, false
+    justifiedgallery: true # options: true, false
+    google_analytics: UA-129296219-1 # enter the tracking ID for your Google Analytics
+    google_site_verification: # enter Google site verification code
+    baidu_analytics: # enter Baidu Analytics hash key
+
+
+# Marked Plugin
+marked:
+    gfm: true
+    pedantic: false
+    sanitize: false
+    tables: true
+    breaks: true
+    smartLists: true
+    smartypants: true
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+    links:
+        Hexo: http://hexo.io
+
+# Added by Yingchi
+post_sidebar: false  # display sidebar in post page if true
+home_sidebar: true # display sidebar in home page if true
+home_footer: false # show article footer in the index.html page
