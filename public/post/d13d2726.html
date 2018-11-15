@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    
+    <title>Binary Tree Preorder Traversal | zuoyang&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+<meta name="keywords" content="C++,Binary Tree">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Binary Tree Preorder Traversal">
+<meta property="og:url" content="https://www.zuoyangblog.com/post/d13d2726.html">
+<meta property="og:site_name" content="zuoyang&#39;s blog">
+<meta property="og:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-15T16:37:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Binary Tree Preorder Traversal">
+<meta name="twitter:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+    
+
+    
+
+    
+        <link rel="icon" href="../css/images/horse.jpg">
+    
+
+    <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../libs/open-sans/styles.css">
+    <link rel="stylesheet" href="../libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+
+    <script src="../libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="../libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="../libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-129296219-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+
+
+</head>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="../index.html" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">zuoyang&#39;s blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="../.">Home</a>
+                
+                    <a class="main-nav-link" href="../archives">Archives</a>
+                
+                    <a class="main-nav-link" href="../categories">Categories</a>
+                
+                    <a class="main-nav-link" href="../tags">Tags</a>
+                
+                    <a class="main-nav-link" href="../about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="../css/images/profile_pic.jpg">
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="../js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="../.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="../archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="../categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="../tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="../about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <script type='text/javascript'>
+                $('body').append("<style type='text/css'>@media screen and (min-width: 1200px) { #main {margin: auto; width: 70%; display: block; float:none;}}</style>");
+                </script>
+                <script type='text/javascript'>
+                document.querySelector('style').textContent += "@media screen and (max-width: 1199px) and (min-width: 800px) { #main {margin: auto; width: 70%; display: block; float:none;}}"
+                </script>
+            
+            <section id="main"><article id="post-Binary-Tree-Preorder-Traversal" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Binary Tree Preorder Traversal
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="">
+            <time datetime="2018-11-15T16:35:34.000Z" itemprop="datePublished">2018-11-16</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="../categories/leetcode/">leetcode</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="../tags/Binary-Tree/">Binary Tree</a>, <a class="tag-link" href="../tags/C/">C++</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <p><strong>问题描述：</strong></p>
+<p>Given a binary tree, return the preorder traversal of its nodes’ values.</p>
+<p>For example:<br>Given binary tree {1,#,2,3},</p>
+<p>   1<br>​    \<br>​     2<br>​    /<br>   3<br>return [1,2,3].</p>
+<p>Note: Recursive solution is trivial, could you do it iteratively?</p>
+<p><strong>非递归实现，不过超时了。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pretr;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> pretr;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode *&gt; node;</span><br><span class="line">        node.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!node.empty())&#123;</span><br><span class="line">            TreeNode *p = node.top();</span><br><span class="line">            pretr.push_back(p-&gt;val);</span><br><span class="line">            node.pop();</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;right) node.push(p);</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;left) node.push(p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pretr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><strong>递归实现</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pretr;</span><br><span class="line">        process(root,pretr);</span><br><span class="line">        <span class="keyword">return</span> pretr;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">process</span><span class="params">(TreeNode *root,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;pretr)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>) <span class="keyword">return</span>;</span><br><span class="line">        TreeNode *p;</span><br><span class="line">        p = root;</span><br><span class="line">        pretr.push_back(p-&gt;val);</span><br><span class="line">        process(p-&gt;left,pretr);</span><br><span class="line">        process(p-&gt;right,pretr);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+            </div>
+        
+        </div>
+        
+    
+    
+        
+<nav id="article-nav">
+    
+        <a href="a971a08f.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Newer</strong>
+            <div class="article-nav-title">
+                
+                    Binary Tree Level Order Traversal
+                
+            </div>
+        </a>
+    
+    
+        <a href="8a5e7d39.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">Older</strong>
+            <div class="article-nav-title">Binary Tree Inorder Traversal</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+      
+    <div class="fb-comments" data-width="100%" data-href="https://www.zuoyangblog.com/post/d13d2726.html" data-num-posts="5"></div>
+
+
+    
+    </section>
+
+</section>
+            
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2018 
+            <span class="with-love">
+            	<i class="fa fa-heart"></i>
+            </span>
+            zuoyang<br>
+            <!-- 
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+            -->
+            Last modified: Mar. 12th, 2017
+        </div>
+    </div>
+</footer>
+        
+    
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.8";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+    
+        <script src="../libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="../libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="../libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="../js/main.js"></script>
+
+    </div>
+</body>
+</html>
