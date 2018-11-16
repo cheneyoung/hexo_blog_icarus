@@ -61,10 +61,16 @@ search:
 
 # Comment
 comment:
+    gitment:
+        owner: cheneyoung
+        repo: cheneyoung.github.io
+        client_id: 6b346f4de8336f10e022 
+        client_secret: 706a95586b24195c087762bf6f2d49f0bf78735d
+        admin: cheneyoung
     disqus: # enter disqus shortname here
     duoshuo: # enter duoshuo shortname here
     youyan: # enter youyan uid here
-    facebook: true
+    facebook: false 
     isso: # enter the domain name of your own comment isso server eg. comments.example.com
 
 # Share

@@ -173,22 +173,13 @@ ga('send', 'pageview');
             <header class="article-header">
                 
     
-        <h1 class="article-title" itemprop="name">
+        <h1 class="article-title" itemprop="name" style="color: #009688;font-size:1.5em;">
             岛屿个数
         </h1>
     
 
                 
                     <div class="article-meta">
-                        
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="">
-            <time datetime="2018-11-15T15:36:58.000Z" itemprop="datePublished">2018-11-15</time>
-        </a>
-    </div>
-
-
                         
     <div class="article-category">
     	<i class="fa fa-folder"></i>
@@ -201,6 +192,9 @@ ga('send', 'pageview');
         <a class="tag-link" href="../tags/C/">C++</a>, <a class="tag-link" href="../tags/DFS/">DFS</a>
     </div>
 
+                        
+                            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>次
+                        
                     </div>
                 
             </header>
@@ -257,12 +251,27 @@ ga('send', 'pageview');
     
     <section id="comments">
     
-      
-    <div class="fb-comments" data-width="100%" data-href="https://www.zuoyangblog.com/post/cc03a9fe.html" data-num-posts="5"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<div class="gitalk">
+    <div id="gitalk-container"></div>
+    <script type="text/javascript">
+        const gitalk = new Gitalk({
+            clientID: '6b346f4de8336f10e022',
+            clientSecret: '706a95586b24195c087762bf6f2d49f0bf78735d',
+            repo: 'cheneyoung.github.io',
+            owner: 'cheneyoung',
+            admin: ['cheneyoung'],
+            id: "https://www.zuoyangblog.com/post/cc03a9fe.html".substr(19,50),      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
 
-
+        gitalk.render('gitalk-container')
+    </script>
+</div>
     
     </section>
+
 
 </section>
             
@@ -271,29 +280,33 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 
-            <span class="with-love">
-            	<i class="fa fa-heart"></i>
-            </span>
-            zuoyang<br>
-            <!-- 
-            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
-            -->
-            Last modified: Mar. 12th, 2017
+            &copy; 2018 zuoyang<br>
+               <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+               <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+               访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人
         </div>
     </div>
 </footer>
+
         
-    
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en/sdk.js#xfbml=1&version=v2.8";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<div class="gitalk">
+    <div id="gitalk-container"></div>
+    <script type="text/javascript">
+        const gitalk = new Gitalk({
+            clientID: '6b346f4de8336f10e022',
+            clientSecret: '706a95586b24195c087762bf6f2d49f0bf78735d',
+            repo: 'cheneyoung.github.io',
+            owner: 'cheneyoung',
+            admin: ['cheneyoung'],
+            id: "https://www.zuoyangblog.com/post/cc03a9fe.html".substr(19,50),      // Ensure uniqueness and length less than 50
+            distractionFreeMode: false  // Facebook-like distraction free mode
+        })
 
-
+        gitalk.render('gitalk-container')
+    </script>
+</div>
 
 
 
