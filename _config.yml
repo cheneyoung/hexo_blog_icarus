@@ -82,6 +82,9 @@ index_generator:
 sitemap:
   path: sitemap.xml
 
+toc:
+    maxDepth: 3
+
 # Category & Tag
 default_category: uncategorized
 category_map:

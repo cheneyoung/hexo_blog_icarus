@@ -11,11 +11,11 @@ abbrlink: 3a6a8a8c
 date: 2018-11-19 20:15:07
 ---
 
-# 1、Ceph架构简介
+# Ceph架构简介
 
 最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。
 
-## 1.1 Ceph
+## Ceph
 
 Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。
 
@@ -27,7 +27,7 @@ Ceph is a distributed object, block, and file storage platform.
 
 Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW、RBD、CephFS等服务。Ceph实现了非常底层的object storage，是纯粹的SDS，并且支持通用的ZFS、BtrFS和Ext4文件系统，能轻易得Scale，没有单点故障。
 
-## 1.2 Ceph特点
+## Ceph特点
 
 - 高性能
   a. 摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。
@@ -46,7 +46,7 @@ Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW
   a. 支持三种存储接口：块存储、文件存储、对象存储。
   b. 支持自定义接口，支持多种语言驱动。
 
-## 1.3 Ceph架构
+## Ceph架构
 
 **支持三种接口：**
 
@@ -54,19 +54,13 @@ Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW
 - Block：支持精简配置、快照、克隆。
 - File：Posix接口，支持快照。
 
-![rados](Ceph_introduction/rados.jpg)
+{% asset_img rados.jpg  rados %}
 
+{% asset_img ceph-architectural.png  ceph-architectural %}
 
+## Ceph核心组件及概念介绍
 
-
-
-![ceph-architectural](Ceph_introduction/ceph-architectural.png)
-
-
-
-## 1.4 Ceph核心组件及概念介绍
-
-![ceph_all_component](Ceph_introduction/ceph_all_component.png)
+{% asset_img ceph_all_component.png  ceph-all-component %}
 
 - Monitor   
 
@@ -114,11 +108,11 @@ Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW
 
 
 
-# 2、CEPH Filesystem
+# CEPH Filesystem
 
-## 2.1 文件存储
+## 文件存储
 
-![ceph_file](Ceph_introduction/ceph_file.jpg)
+{% asset_img ceph_file.jpg  file-system %}
 
 **典型设备：** FTP、NFS服务器
 为了克服块存储文件无法共享的问题，所以有了文件存储。
@@ -140,11 +134,11 @@ Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW
 - 有目录结构的文件存储。
 - …
 
-## 2.2 Ceph 文件系统
+## Ceph 文件系统
 
 Ceph 文件系统（ Ceph FS ）是个 POSIX 兼容的文件系统，它使用 Ceph 存储集群来存储数据。 Ceph 文件系统与 Ceph 块设备、同时提供 S3 和 Swift API 的 Ceph 对象存储、或者原生库（ librados ）一样，都使用着相同的 Ceph 存储集群系统。 
 
-![img](http://docs.ceph.org.cn/_images/ditaa-b5a320fc160057a1a7da010b4215489fa66de242.png)
+![cephfs](http://docs.ceph.org.cn/_images/ditaa-b5a320fc160057a1a7da010b4215489fa66de242.png)
 
 Ceph 文件系统要求 Ceph 存储集群内至少有一个 Ceph 元数据服务器。
 
@@ -154,11 +148,11 @@ cephfs目前发展比较慢，之前一直没有稳定版本，2016年4月21日�
 
 
 
-# 3、CEPH Block Device
+# CEPH Block Device
 
-## 3.1 块存储
+## 块存储
 
-![disk](Ceph_introduction/disk.jpg)
+{% asset_img disk.jpg  block device %}
 
 **典型设备：** 磁盘阵列，硬盘
 
@@ -184,31 +178,31 @@ cephfs目前发展比较慢，之前一直没有稳定版本，2016年4月21日�
 
 
 
-## 3.2 Ceph 块设备 (RBD)
+## Ceph 块设备 (RBD)
 
 块是一个字节序列（例如，一个 512 字节的数据块）。基于块的存储接口是最常见的存储数据方法，它们基于旋转介质，像硬盘、 CD 、软盘、甚至传统的 9 磁道磁带。无处不在的块设备接口使虚拟块设备成为与 Ceph 这样的海量存储系统交互的理想之选。
 
 Ceph 块设备是精简配置的、大小可调且将数据条带化存储到集群内的多个 OSD 。 Ceph 块设备利用 RADOS 的多种能力，如快照、复制和一致性。 Ceph 的 RADOS 块设备（ RBD ）使用内核模块或 librbd 库与 OSD 交互。
 
-![img](http://docs.ceph.org.cn/_images/ditaa-dc9f80d771b55f2daa5cbbfdb2dd0d3e6dfc17c0.png)
+![rbd](http://docs.ceph.org.cn/_images/ditaa-dc9f80d771b55f2daa5cbbfdb2dd0d3e6dfc17c0.png)
 
 内核模块可使用 Linux 页缓存。对基于 librbd 的应用程序， Ceph 可提供 RBD 缓存。
 
 客户端可以通过内核模块挂在rbd使用，客户端使用rbd块设备就像使用普通硬盘一样，可以对其就行格式化然后使用；客户应用也可以通过librbd使用ceph块，典型的是云平台的块存储服务（如下图），云平台可以使用rbd作为云的存储后端提供镜像存储、volume块或者客户的系统引导盘等。
 
-![ceph_rbd2](Ceph_introduction/ceph_rbd2.png)
+{% asset_img ceph_rbd2.png ceph-rbd %}
 
 Ceph 块设备靠无限伸缩性提供了高性能，如向内核模块、或向 abbr:KVM (kernel virtual machines) （如 Qemu 、 OpenStack 和 CloudStack等云计算系统通过 libvirt 和 Qemu 可与 Ceph 块设备集成）。你可以用同一个集群同时运行 Ceph RADOS gateway、 Ceph FS 文件系统、和 Ceph 块设备。
 
 目前ceph rbd在云平台使用比较广泛而且也很稳定，社区的支持力度也非常大。
 
-# 4、CEPH Object Gateway
+# CEPH Object Gateway
 
-## 4.1 对象存储
+## 对象存储
 
 对象存储是提供restful接口并数据组织形式扁平化的存储方法，对象存储同兼具块存储高速直接访问磁盘及文件存储的分布式共享特点。
 
-![ceph_object](Ceph_introduction/ceph_object.jpg)
+{% asset_img ceph-object.jpg %}
 
 **典型设备：** 内置大容量硬盘的分布式服务器(swift, s3)
 多台服务器内置大容量硬盘，安装上对象存储管理软件，对外提供读写访问功能。
@@ -224,7 +218,7 @@ Ceph 块设备靠无限伸缩性提供了高性能，如向内核模块、或向
 - 视频存储。
 - …
 
-## 4.2 Ceph 对象存储 (radosgw)
+## Ceph 对象存储 (radosgw)
 
 Ceph 对象网关是一个构建在 `librados` 之上的对象存储接口，它为应用程序访问Ceph 存储集群提供了一个 RESTful 风格的网关 。 Ceph 对象存储支持 2 种接口：
 
@@ -233,7 +227,7 @@ Ceph 对象网关是一个构建在 `librados` 之上的对象存储接口，它
 
 Ceph 对象存储使用 Ceph 对象网关守护进程（ `radosgw` ），它是个与 Ceph 存储集群交互的 FastCGI 模块。因为它提供了与 OpenStack Swift 和 Amazon S3 兼容的接口， RADOS 要有它自己的用户管理。 Ceph 对象网关可与 Ceph FS 客户端或 Ceph 块设备客户端共用一个存储集群。 S3 和 Swift 接口共用一个通用命名空间，所以你可以用一个接口写入数据、然后用另一个接口取出数据。
 
-![img](http://docs.ceph.org.cn/_images/ditaa-50d12451eb76c5c72c4574b08f0320b39a42e5f1.png)
+![radosgw](http://docs.ceph.org.cn/_images/ditaa-50d12451eb76c5c72c4574b08f0320b39a42e5f1.png)
 
 Ceph 对象存储**不使用** Ceph 元数据服务器。
 
