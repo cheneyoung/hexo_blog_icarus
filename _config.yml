@@ -16,6 +16,7 @@ timezone:
 url: https://www.zuoyangblog.com
 root: /
 permalink: post/:abbrlink.html
+#permalink: post/:category/:title
 abbrlink:
     alg: crc32  # 算法：crc16(default) and crc32
     rep: hex    # 进制：dec(default) and hex
@@ -84,7 +85,6 @@ sitemap:
 
 toc:
     maxDepth: 3
-
 # Category & Tag
 default_category: uncategorized
 category_map:
