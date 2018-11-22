@@ -41,6 +41,7 @@ date: 2018-11-20 18:28:27
 - 软件准备：VirtualBox，CentOS
 - 安装虚拟机
 - 克隆虚拟机
+- 
 
 # 软件准备
 
@@ -267,7 +268,9 @@ gpgcheck=0
 
 ```shell
 yum clean all && yum makecache
-yum -y install ceph
+yum -y install yum-plugin-priorities 
+yum -y install openssh-server
+yum -y install ceph ceph-radosgw
 ```
 
 验证ceph是否安装完成：
