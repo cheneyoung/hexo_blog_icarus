@@ -796,7 +796,6 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
    [root@ceph-1 ceph]# chown ceph:ceph /var/lib/ceph/osd/ceph-0/journal
    [root@ceph-1 ceph]# ceph-osd --mkjournal -i 0
    2018-11-22 08:31:06.832760 7f97505afd80 -1 journal read_header error decoding journal header
-   #初始化新的journal
    [root@ceph-1 ceph]# ceph-osd --mkjournal -i 0
    [root@ceph-1 ceph]# chown ceph:ceph /var/lib/ceph/osd/ceph-0/journal
    ```
@@ -814,7 +813,6 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
    这是ceph-1上新创建的第一个osd，CRUSH map中还没有ceph-1节点，因此首先要把ceph-1节点加入CRUSH map，同理，ceph-2/ceph-3节点也需要加入CRUSH map
 
    ```shell
-   #ceph osd crush add-bucket {hostname} host
    [root@ceph-1 ceph]# ceph osd crush add-bucket `hostname` host
    added bucket ceph-1 type host to crush map
    ```
@@ -842,7 +840,6 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
    需要向systemctl传递osd的`id`以启动指定的osd进程，如下，我们准备启动osd.0进程
 
    ```shell
-   #systemctl start ceph-osd@{id}  id表示osd编号，从数字0开始
    [root@ceph-1 ceph]# cp /usr/lib/systemd/system/ceph-osd@.service /usr/lib/systemd/system/ceph-osd@0.service
    [root@ceph-1 ceph]# systemctl start ceph-osd@0
    [root@ceph-1 ceph]# systemctl enable ceph-osd@0
@@ -867,8 +864,7 @@ realtime =none                   extsz=4096   blocks=0, rtextents=0
 [root@ceph-1 ceph]# ceph -s
   cluster:
     id:     c165f9d0-88df-48a7-8cc5-11da82f99c93
-    health: HEALTH_WARN
-            clock skew detected on mon.ceph-3
+    health: HEALTH_OK
 
   services:
     mon: 3 daemons, quorum ceph-1,ceph-2,ceph-3
@@ -951,7 +947,7 @@ add item id 1 name 'osd.1' weight 2 at location {host=ceph-1,root=default} to cr
 Created symlink from /etc/systemd/system/ceph-osd.target.wants/ceph-osd@1.service to /usr/lib/systemd/system/ceph-osd@1.service.
 ```
 
-按照上面的方法添加所有的osd只后，可以得到如下的集群：
+按照上面的方法添加所有的osd之后，可以得到如下的集群：
 
 ```shell
 [root@ceph-3 ceph]# ceph -s
