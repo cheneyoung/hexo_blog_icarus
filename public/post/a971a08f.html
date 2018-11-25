@@ -5,18 +5,18 @@
     
     <title>Binary Tree Level Order Traversal | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree {3,9,20,#,#,15,7},    3  / \ 9  20   /  \  15">
+    <meta name="description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example: Given binary tree {3,9,20,#,#,15,7},  	3    / \   9  20     /">
 <meta name="keywords" content="C++,Binary Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Level Order Traversal">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/a971a08f.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree {3,9,20,#,#,15,7},    3  / \ 9  20   /  \  15">
+<meta property="og:description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example: Given binary tree {3,9,20,#,#,15,7},  	3    / \   9  20     /">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:50:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Level Order Traversal">
-<meta name="twitter:description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example:Given binary tree {3,9,20,#,#,15,7},    3  / \ 9  20   /  \  15">
+<meta name="twitter:description" content="问题描述： Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level). For example: Given binary tree {3,9,20,#,#,15,7},  	3    / \   9  20     /">
     
 
     
@@ -208,16 +208,19 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-<p>For example:<br>Given binary tree {3,9,20,#,#,15,7},</p>
-<pre><code>   3
- / \
-9  20
-  /  \
- 15   7
-</code></pre><p>return its level order traversal as:</p>
+<p>For example:<br>
+Given binary tree {3,9,20,#,#,15,7},</p>
+<pre><code> 	3
+   / \
+  9  20
+    /  \
+   15   7
+</code></pre>
+<p>return its level order traversal as:</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">3</span>],</span><br><span class="line">  [<span class="number">9</span>,<span class="number">20</span>],</span><br><span class="line">  [<span class="number">15</span>,<span class="number">7</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p>confused what “{1,#,2,3}” means? &gt; read more on how binary tree is serialized on OJ.</p>
-<p>OJ’s Binary Tree Serialization:<br>The serialization of a binary tree follows a level order traversal, where ‘#’ signifies a path terminator where no node exists below.</p>
+<p>OJ’s Binary Tree Serialization:<br>
+The serialization of a binary tree follows a level order traversal, where ‘#’ signifies a path terminator where no node exists below.</p>
 <p>Here’s an example:</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="number">1</span></span><br><span class="line"> / \</span><br><span class="line"><span class="number">2</span>   <span class="number">3</span></span><br><span class="line">   /</span><br><span class="line">  <span class="number">4</span></span><br><span class="line">   \</span><br><span class="line">    <span class="number">5</span></span><br></pre></td></tr></table></figure>
 <p>The above binary tree is serialized as “{1,2,3,#,#,4,#,#,5}”.</p>

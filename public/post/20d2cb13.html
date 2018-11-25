@@ -5,18 +5,18 @@
     
     <title>Unique Binary Search Trees | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example,Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
+    <meta name="description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example, Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
 <meta name="keywords" content="C++,Binary Tree,BST">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unique Binary Search Trees">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/20d2cb13.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example,Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
+<meta property="og:description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example, Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:50:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Unique Binary Search Trees">
-<meta name="twitter:description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example,Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
+<meta name="twitter:description" content="问题描述： Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? For example, Given n = 3, there are a total of 5 unique BST’s. 123451         3     3      2      1 \">
     
 
     
@@ -208,7 +208,8 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>Given n, how many structurally unique BST’s (binary search trees) that store values 1…n?</p>
-<p>For example,<br>Given n = 3, there are a total of 5 unique BST’s.</p>
+<p>For example,<br>
+Given n = 3, there are a total of 5 unique BST’s.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>         <span class="number">3</span>     <span class="number">3</span>      <span class="number">2</span>      <span class="number">1</span></span><br><span class="line"> \       /     /      / \      \</span><br><span class="line">  <span class="number">3</span>     <span class="number">2</span>     <span class="number">1</span>      <span class="number">1</span>   <span class="number">3</span>      <span class="number">2</span></span><br><span class="line"> /     /       \                 \</span><br><span class="line"><span class="number">2</span>     <span class="number">1</span>         <span class="number">2</span>                 <span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p><strong>解决思路：</strong></p>
 <p>首先分析一下当n=0,1,2这三种情况下BTS个数，我们可以得到当n=0,1时，BTS个数为1，当n=2时，BTS个数为2.这就可以转化为一个递归求解的问题，我们将根结点从1到n依次代替，这样左右子树结点的个数就会发生变化，我们在分别求解左右子树BTS的个数，以此递归求解便可得到BTS的总数目。</p>

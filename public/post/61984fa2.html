@@ -5,18 +5,18 @@
     
     <title>ZigZag Conversion | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   NA P L S">
+    <meta name="description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   N A P L S">
 <meta name="keywords" content="C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ZigZag Conversion">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/61984fa2.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   NA P L S">
+<meta property="og:description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   N A P L S">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:25:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ZigZag Conversion">
-<meta name="twitter:description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   NA P L S">
+<meta name="twitter:description" content="问题描述： The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility) P   A   H   N A P L S">
     
 
     
@@ -208,8 +208,13 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>The string “PAYPALISHIRING” is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)</p>
-<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br>And then read line by line: “PAHNAPLSIIGYIR”<br>Write the code that will take a string and make this conversion given a number of rows:</p>
-<p>string convert(string text, int nRows);<br>convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
+<p>P   A   H   N<br>
+A P L S I I G<br>
+Y   I   R<br>
+And then read line by line: &quot;PAHNAPLSIIGYIR&quot;<br>
+Write the code that will take a string and make this conversion given a number of rows:</p>
+<p>string convert(string text, int nRows);<br>
+convert(“PAYPALISHIRING”, 3) should return “PAHNAPLSIIGYIR”.</p>
 <p><strong>解决思路：</strong></p>
 <p>找出规律即可，每次的周期为2<em>nRows-2,但是在1到nRows-1的行数还需要判断周期为2</em>（nRows-1-i）的元素，i是处于1到nRows-1的行数。</p>
 <p><strong>代码：</strong></p>
