@@ -15,11 +15,11 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://www.zuoyangblog.com
 root: /
-permalink: post/:abbrlink.html
-#permalink: post/:category/:title
-abbrlink:
-    alg: crc32  # 算法：crc16(default) and crc32
-    rep: hex    # 进制：dec(default) and hex
+#permalink: post/:abbrlink.html
+permalink: post/:title.html
+#abbrlink:
+#    alg: crc32  # 算法：crc16(default) and crc32
+#    rep: hex    # 进制：dec(default) and hex
 permalink_defaults:
 
 # Directory
