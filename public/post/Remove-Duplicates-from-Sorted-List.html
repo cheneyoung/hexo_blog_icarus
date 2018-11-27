@@ -5,18 +5,18 @@
     
     <title>Remove Duplicates from Sorted List | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3.">
+    <meta name="description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example, Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2. Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
 <meta name="keywords" content="C++,List">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Remove Duplicates from Sorted List">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/Remove-Duplicates-from-Sorted-List.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3.">
+<meta property="og:description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example, Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2. Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:28:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Remove Duplicates from Sorted List">
-<meta name="twitter:description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example,Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2.Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3.">
+<meta name="twitter:description" content="问题描述： Given a sorted linked list, delete all duplicates such that each element appear only once. For example, Given 1-&amp;gt;1-&amp;gt;2, return 1-&amp;gt;2. Given 1-&amp;gt;1-&amp;gt;2-&amp;gt;3-&amp;gt;3, return 1-&amp;gt;2-&amp;gt;3">
     
 
     
@@ -208,7 +208,9 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>Given a sorted linked list, delete all duplicates such that each element appear only once.</p>
-<p>For example,<br>Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
+<p>For example,<br>
+Given 1-&gt;1-&gt;2, return 1-&gt;2.<br>
+Given 1-&gt;1-&gt;2-&gt;3-&gt;3, return 1-&gt;2-&gt;3.</p>
 <p><strong>解决思路：</strong></p>
 <p>定义两个指针base和cmp,base指针指向被比较的结点，cmp指向base的后一个结点，由于链表是有序的，所以cmp找到第一个不等于base的结点之后，就分别将base和cmp后移。如果相等，只要将相等的结点删除即可。</p>
 <p><strong>代码:</strong></p>

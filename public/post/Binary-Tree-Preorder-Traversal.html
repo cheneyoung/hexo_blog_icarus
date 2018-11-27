@@ -5,18 +5,18 @@
     
     <title>Binary Tree Preorder Traversal | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+    <meta name="description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example: Given binary tree {1,#,2,3}, 1 ​     ​     2 ​    / 3 return [1,2,3]. Note: Recursive solution is trivial, c">
 <meta name="keywords" content="C++,Binary Tree">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Binary Tree Preorder Traversal">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/Binary-Tree-Preorder-Traversal.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+<meta property="og:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example: Given binary tree {1,#,2,3}, 1 ​     ​     2 ​    / 3 return [1,2,3]. Note: Recursive solution is trivial, c">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:50:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Binary Tree Preorder Traversal">
-<meta name="twitter:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example:Given binary tree {1,#,2,3},    1​    \​     2​    /   3return [1,2,3]. Note: Recursive solution is trivial,">
+<meta name="twitter:description" content="问题描述： Given a binary tree, return the preorder traversal of its nodes’ values. For example: Given binary tree {1,#,2,3}, 1 ​     ​     2 ​    / 3 return [1,2,3]. Note: Recursive solution is trivial, c">
     
 
     
@@ -208,8 +208,14 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>Given a binary tree, return the preorder traversal of its nodes’ values.</p>
-<p>For example:<br>Given binary tree {1,#,2,3},</p>
-<p>   1<br>​    \<br>​     2<br>​    /<br>   3<br>return [1,2,3].</p>
+<p>For example:<br>
+Given binary tree {1,#,2,3},</p>
+<p>1<br>
+​    <br>
+​     2<br>
+​    /<br>
+3<br>
+return [1,2,3].</p>
 <p>Note: Recursive solution is trivial, could you do it iteratively?</p>
 <p><strong>非递归实现，不过超时了。</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode *root) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pretr;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> pretr;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode *&gt; node;</span><br><span class="line">        node.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!node.empty())&#123;</span><br><span class="line">            TreeNode *p = node.top();</span><br><span class="line">            pretr.push_back(p-&gt;val);</span><br><span class="line">            node.pop();</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;right) node.push(p);</span><br><span class="line">            <span class="keyword">if</span>(p-&gt;left) node.push(p);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pretr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
