@@ -103,7 +103,8 @@ miscellaneous:
         twitter_id:
         google_plus:
     links:
-        Hexo: http://hexo.io
+        csdn: https://blog.csdn.net/zuoyang1990
+        weibo: https://weibo.com/u/2615035445/home?leftnav=1
 
 # Added by Yingchi
 post_sidebar: false  # display sidebar in post page if true

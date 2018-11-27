@@ -13,10 +13,13 @@
 <meta property="og:site_name" content="zuoyang&#39;s blog">
 <meta property="og:description" content="基于上一篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://www.zuoyangblog.com/post/create-cephfs/cephfs.jpg">
+<meta property="og:image" content="https://www.zuoyangblog.com/post/create-cephfs/ceph_archite.jpg">
 <meta property="og:updated_time" content="2018-11-23T08:06:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四篇：创建cephfs服务">
 <meta name="twitter:description" content="基于上一篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
+<meta name="twitter:image" content="https://www.zuoyangblog.com/post/create-cephfs/cephfs.jpg">
     
 
     
@@ -221,9 +224,9 @@ ga('send', 'pageview');
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ceph]# ceph -s</span><br><span class="line">  cluster:</span><br><span class="line">    id:     c165f9d0-88df-48a7-8cc5-11da82f99c93</span><br><span class="line">    health: HEALTH_OK</span><br><span class="line"></span><br><span class="line">  services:</span><br><span class="line">    mon: 3 daemons, quorum ceph-1,ceph-2,ceph-3</span><br><span class="line">    mgr: ceph-1(active), standbys: admin, ceph-2, ceph-3</span><br><span class="line">    osd: 9 osds: 9 up, 9 in</span><br><span class="line"></span><br><span class="line">  data:</span><br><span class="line">    pools:   0 pools, 0 pgs</span><br><span class="line">    objects: 0 objects, 0B</span><br><span class="line">    usage:   965MiB used, 18.0TiB / 18.0TiB avail</span><br><span class="line">    pgs:</span><br></pre></td></tr></table></figure>
 <p>本篇主要讲如何基于ceph集群搭建cephfs服务。</p>
 <h1><span id="cephfs简介">cephFS简介</span></h1><p>The <a href="http://docs.ceph.com/docs/mimic/glossary/#term-ceph-filesystem" target="_blank" rel="noopener">Ceph Filesystem</a> (Ceph FS) is a POSIX-compliant filesystem that uses a Ceph Storage Cluster to store its data. </p>
-
+<img src="/post/create-cephfs/cephfs.jpg">
 <p>Ceph文件系统（CephFS）提供符合POSIX标准的文件系统作为服务，该服务在基于对象的Ceph存储集群之上。 CephFS文件被映射到Ceph存储在Ceph存储集群中的对象。 Ceph客户端有两种挂载cephfs的方式：基于内核和FUSE.下图为cephfs的结构图：</p>
-
+<img src="/post/create-cephfs/ceph_archite.jpg">
 <p>Ceph文件系统服务包括与Ceph存储集群一起部署的Ceph元数据服务器（MDS）。 MDS存储了文件系统里的所有元数据（目录，文件所有权，访问模式等）。 MDS（ceph-mds的守护进程）将一些简单的文件系统操作（例如列出目录或更改目录（ls，cd）等）与Ceph OSD守护进程隔离，这样可以减少对OSD进程造成不必要的负担。 因此，将元数据与数据分离意味着Ceph文件系统可以提供高性能服务，而不会对Ceph存储集群造成负担。</p>
 <ul>
 <li>MDS：存储metadata(元数据)</li>
