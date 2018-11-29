@@ -13,7 +13,7 @@ abbrlink: 4a310db5
 date: 2018-11-23 12:06:35
 ---
 
-基于[上一篇](https://www.zuoyangblog.com/post/28a4bfb3.html)，我们搭建好了一个健康的ceph集群：
+基于[第三篇](https://www.zuoyangblog.com/post/manual-deploy-ceph.html)，我们搭建好了一个健康的ceph集群：
 
 - 3个mon节点组成的mon集群
 - 9个osd节点组成的osd集群
@@ -65,9 +65,9 @@ ceph-mds可以作为单个进程运行，也可以分发到多个物理机器，
 
 # 新建ceph client虚拟机
 
-根据[第二篇](https://www.zuoyangblog.com/post/ad293d8.html)的方法，新建一个虚拟机，我们命名为ceph-client.
+根据[第二篇](https://www.zuoyangblog.com/post/ceph-enviroment-set.html)的方法，新建一个虚拟机，我们命名为ceph-client.
 
-安装好之后配置相应的网络，具体方法详见[这里](https://www.zuoyangblog.com/post/ad293d8.html)
+安装好之后配置相应的网络，具体方法详见[这里](https://www.zuoyangblog.com/post/ceph-enviroment-set.html)
 
 ## 修改ifcfg-enp0s3
 

@@ -5,18 +5,18 @@
     
     <title>Jewels-and-Stones | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of th">
+    <meta name="description" content="问题描述：You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of the">
 <meta name="keywords" content="C++,string">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jewels-and-Stones">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/Jewels-and-Stones.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of th">
+<meta property="og:description" content="问题描述：You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of the">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-27T16:09:24.000Z">
+<meta property="og:updated_time" content="2018-11-27T16:46:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jewels-and-Stones">
-<meta name="twitter:description" content="问题描述： You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of th">
+<meta name="twitter:description" content="问题描述：You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in Sis a type of stone you have.  You want to know how many of the">
     
 
     
@@ -211,8 +211,7 @@ ga('send', 'pageview');
             
         
         
-            <h1><span id="问题描述">问题描述：</span></h1>
-<p>You’re given strings <code>J</code> representing the types of stones that are jewels, and <code>S</code> representing the stones you have.  Each character in <code>S</code>is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
+            <h1><span id="问题描述">问题描述：</span></h1><p>You’re given strings <code>J</code> representing the types of stones that are jewels, and <code>S</code> representing the stones you have.  Each character in <code>S</code>is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
 <p>The letters in <code>J</code> are guaranteed distinct, and all characters in <code>J</code> and <code>S</code> are letters. Letters are case sensitive, so <code>&quot;a&quot;</code> is considered a different type of stone from <code>&quot;A&quot;</code>.</p>
 <p><strong>Example 1:</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: J = "aA", S = "aAAbbbb"</span><br><span class="line">Output: 3</span><br></pre></td></tr></table></figure>
@@ -223,10 +222,8 @@ ga('send', 'pageview');
 <li><code>S</code> and <code>J</code> will consist of letters and have length at most 50.</li>
 <li>The characters in <code>J</code> are distinct.</li>
 </ul>
-<h1><span id="解决思路">解决思路：</span></h1>
-<p>此题要解决的问题是：统计字符串S中所有出现在字符串J中的字符个数</p>
-<h1><span id="ac代码">AC代码：</span></h1>
-<ul>
+<h1><span id="解决思路">解决思路：</span></h1><p>此题要解决的问题是：统计字符串S中所有出现在字符串J中的字符个数</p>
+<h1><span id="ac代码">AC代码：</span></h1><ul>
 <li>C++</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len_S = S.length();</span><br><span class="line">        <span class="keyword">int</span> len_J = J.length();</span><br><span class="line">        <span class="keyword">if</span> (len_S == <span class="number">0</span> || len_J == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> jewel_stone = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len_S; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (isInString(S[i],J)) &#123;</span><br><span class="line">                jewel_stone ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> jewel_stone;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isInString</span><span class="params">(<span class="keyword">char</span> target, <span class="built_in">string</span> source)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; source.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (target == source[i]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>

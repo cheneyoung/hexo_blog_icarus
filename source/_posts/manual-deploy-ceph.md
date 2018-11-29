@@ -21,7 +21,7 @@ date: 2018-11-21 20:33:05
 
 ## 集群环境
 
-[上一篇](https://www.zuoyangblog.com/post/ad293d8.html)，我们创建了3台虚拟机，虚拟机配置如下：
+[第二篇](https://www.zuoyangblog.com/post/ceph-enviroment-set.html)，我们创建了3台虚拟机，虚拟机配置如下：
 
 ```shell
 [root@ceph-1 ~]# lsblk

@@ -5,20 +5,20 @@
     
     <title>第四篇：创建cephfs服务 | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="基于上一篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
+    <meta name="description" content="基于第三篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
 <meta name="keywords" content="ceph,cephfs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第四篇：创建cephfs服务">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/create-cephfs.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="基于上一篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
+<meta property="og:description" content="基于第三篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/create-cephfs/cephfs.jpg">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/create-cephfs/ceph_archite.jpg">
-<meta property="og:updated_time" content="2018-11-23T08:06:09.000Z">
+<meta property="og:updated_time" content="2018-11-29T01:38:51.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第四篇：创建cephfs服务">
-<meta name="twitter:description" content="基于上一篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
+<meta name="twitter:description" content="基于第三篇，我们搭建好了一个健康的ceph集群：  3个mon节点组成的mon集群 9个osd节点组成的osd集群 3个mgr节点(ceph luminous版本才有的) 3个mds服务(cephfs使用)  123456789101112131415[root@ceph-1 ceph]# ceph -s  cluster:    id:     c165f9d0-88df-48a7-8cc5-1">
 <meta name="twitter:image" content="https://www.zuoyangblog.com/post/create-cephfs/cephfs.jpg">
     
 
@@ -214,7 +214,7 @@ ga('send', 'pageview');
             
         
         
-            <p>基于<a href="https://www.zuoyangblog.com/post/28a4bfb3.html">上一篇</a>，我们搭建好了一个健康的ceph集群：</p>
+            <p>基于<a href="https://www.zuoyangblog.com/post/manual-deploy-ceph.html">第三篇</a>，我们搭建好了一个健康的ceph集群：</p>
 <ul>
 <li>3个mon节点组成的mon集群</li>
 <li>9个osd节点组成的osd集群</li>
@@ -223,8 +223,7 @@ ga('send', 'pageview');
 </ul>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ceph]# ceph -s</span><br><span class="line">  cluster:</span><br><span class="line">    id:     c165f9d0-88df-48a7-8cc5-11da82f99c93</span><br><span class="line">    health: HEALTH_OK</span><br><span class="line"></span><br><span class="line">  services:</span><br><span class="line">    mon: 3 daemons, quorum ceph-1,ceph-2,ceph-3</span><br><span class="line">    mgr: ceph-1(active), standbys: admin, ceph-2, ceph-3</span><br><span class="line">    osd: 9 osds: 9 up, 9 in</span><br><span class="line"></span><br><span class="line">  data:</span><br><span class="line">    pools:   0 pools, 0 pgs</span><br><span class="line">    objects: 0 objects, 0B</span><br><span class="line">    usage:   965MiB used, 18.0TiB / 18.0TiB avail</span><br><span class="line">    pgs:</span><br></pre></td></tr></table></figure>
 <p>本篇主要讲如何基于ceph集群搭建cephfs服务。</p>
-<h1><span id="cephfs简介">cephFS简介</span></h1>
-<p>The <a href="http://docs.ceph.com/docs/mimic/glossary/#term-ceph-filesystem" target="_blank" rel="noopener">Ceph Filesystem</a> (Ceph FS) is a POSIX-compliant filesystem that uses a Ceph Storage Cluster to store its data.</p>
+<h1><span id="cephfs简介">cephFS简介</span></h1><p>The <a href="http://docs.ceph.com/docs/mimic/glossary/#term-ceph-filesystem" target="_blank" rel="noopener">Ceph Filesystem</a> (Ceph FS) is a POSIX-compliant filesystem that uses a Ceph Storage Cluster to store its data. </p>
 <img src="/post/create-cephfs/cephfs.jpg">
 <p>Ceph文件系统（CephFS）提供符合POSIX标准的文件系统作为服务，该服务在基于对象的Ceph存储集群之上。 CephFS文件被映射到Ceph存储在Ceph存储集群中的对象。 Ceph客户端有两种挂载cephfs的方式：基于内核和FUSE.下图为cephfs的结构图：</p>
 <img src="/post/create-cephfs/ceph_archite.jpg">
@@ -238,32 +237,21 @@ ga('send', 'pageview');
 <li>高可用性：集群中处于standby状态的ceph-mds进程随时可以取代失败的active状态的ceph-mds，当active状态的ceph-mds进程失败时，ceph-mon很容易就可以把standby状态的mds转换成active状态，从而维持集群的可用性</li>
 <li>可扩展性：集群中可以有多个active状态的ceph-mds进程，它们会将目录树拆分为子树（以及单个繁忙目录的分片），从而有效地平衡所有活动服务器之间的负载。</li>
 </ul>
-<h1><span id="新建ceph-client虚拟机">新建ceph client虚拟机</span></h1>
-<p>根据<a href="https://www.zuoyangblog.com/post/ad293d8.html">第二篇</a>的方法，新建一个虚拟机，我们命名为ceph-client.</p>
-<p>安装好之后配置相应的网络，具体方法详见<a href="https://www.zuoyangblog.com/post/ad293d8.html">这里</a></p>
-<h2><span id="修改ifcfg-enp0s3">修改ifcfg-enp0s3</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br></pre></td></tr></table></figure>
+<h1><span id="新建ceph-client虚拟机">新建ceph client虚拟机</span></h1><p>根据<a href="https://www.zuoyangblog.com/post/ceph-enviroment-set.html">第二篇</a>的方法，新建一个虚拟机，我们命名为ceph-client.</p>
+<p>安装好之后配置相应的网络，具体方法详见<a href="https://www.zuoyangblog.com/post/ceph-enviroment-set.html">这里</a></p>
+<h2><span id="修改ifcfg-enp0s3">修改ifcfg-enp0s3</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br></pre></td></tr></table></figure>
 <p>将最后一行的<code>ONBOOT=no</code>改为<code>ONBOOT=yes</code>,添加IPADDR，NETMASK，这个是<code>网卡1</code>，用于给虚拟机上网。</p>
-<h2><span id="修改ifcfg-enp0s8">修改ifcfg-enp0s8</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s8</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.56.200</span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
-<h2><span id="重启网卡并检查联网状态">重启网卡并检查联网状态：</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
-<h2><span id="修改主机名hostname">修改主机名<code>hostname</code>:</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo ceph-client &gt; /etc/hostname</span><br></pre></td></tr></table></figure>
-<h2><span id="重启通过本机终端登录">重启，通过本机终端登录</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.56.200</span><br></pre></td></tr></table></figure>
-<h2><span id="修改yum源">修改yum源</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">curl http://mirrors.aliyun.com/repo/Centos-7.repo &gt;/etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">curl http://mirrors.aliyun.com/repo/epel-7.repo &gt;/etc/yum.repos.d/epel.repo </span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/epel.repo</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-<h2><span id="配置ceph源">配置ceph源</span></h2>
-<p>在<code>/etc/yum.repos.d/</code>目录下新增一个ceph源文件<code>ceph.repo</code>,并写入下面内容：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/ceph.repo</span><br><span class="line"><span class="meta">#</span><span class="bash">写入以下内容</span></span><br><span class="line">[ceph]</span><br><span class="line">name=ceph</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/x86_64/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-noarch]</span><br><span class="line">name=cephnoarch</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/noarch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-source]</span><br><span class="line">name=ceph-source</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/SRPMS/</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
-<h2><span id="安装软件">安装软件</span></h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all &amp;&amp; yum makecache</span><br><span class="line">yum -y install yum-plugin-priorities </span><br><span class="line">yum -y install openssh-server</span><br></pre></td></tr></table></figure>
-<h1><span id="创建cephfs">创建cephFS</span></h1>
-<p>登录mon集群的那三台机器中的一台即可，我这里登录ceph-1</p>
+<h2><span id="修改ifcfg-enp0s8">修改ifcfg-enp0s8</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s8</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.56.200</span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
+<h2><span id="重启网卡并检查联网状态">重启网卡并检查联网状态：</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+<h2><span id="修改主机名hostname">修改主机名<code>hostname</code>:</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo ceph-client &gt; /etc/hostname</span><br></pre></td></tr></table></figure>
+<h2><span id="重启通过本机终端登录">重启，通过本机终端登录</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.56.200</span><br></pre></td></tr></table></figure>
+<h2><span id="修改yum源">修改yum源</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">curl http://mirrors.aliyun.com/repo/Centos-7.repo &gt;/etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">curl http://mirrors.aliyun.com/repo/epel-7.repo &gt;/etc/yum.repos.d/epel.repo </span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/epel.repo</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+<h2><span id="配置ceph源">配置ceph源</span></h2><p>在<code>/etc/yum.repos.d/</code>目录下新增一个ceph源文件<code>ceph.repo</code>,并写入下面内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/ceph.repo</span><br><span class="line"><span class="meta">#</span>写入以下内容</span><br><span class="line">[ceph]</span><br><span class="line">name=ceph</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/x86_64/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-noarch]</span><br><span class="line">name=cephnoarch</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/noarch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-source]</span><br><span class="line">name=ceph-source</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/SRPMS/</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
+<h2><span id="安装软件">安装软件</span></h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum clean all &amp;&amp; yum makecache</span><br><span class="line">yum -y install yum-plugin-priorities </span><br><span class="line">yum -y install openssh-server</span><br></pre></td></tr></table></figure>
+<h1><span id="创建cephfs">创建cephFS</span></h1><p>登录mon集群的那三台机器中的一台即可，我这里登录ceph-1</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.56.101</span><br></pre></td></tr></table></figure>
-<h2><span id="创建cephfs">创建cephfs</span></h2>
-<p>creatring pools</p>
+<h2><span id="创建cephfs">创建cephfs</span></h2><p>creatring pools</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ceph]# ceph osd pool create cephfs_data 64</span><br><span class="line">pool 'cephfs_data' created</span><br><span class="line">[root@ceph-1 ceph]# ceph osd pool create cephfs_metadata 64</span><br><span class="line">pool 'cephfs_metadata' created</span><br></pre></td></tr></table></figure>
 <p>creating a filesystem</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ceph]# ceph fs new cephfs cephfs_metadata cephfs_data</span><br><span class="line">new fs with metadata pool 2 and data pool 1</span><br><span class="line">[root@ceph-1 ceph]# ceph fs ls</span><br><span class="line">name: cephfs, metadata pool: cephfs_metadata, data pools: [cephfs_data ]</span><br></pre></td></tr></table></figure>
@@ -275,8 +263,7 @@ ga('send', 'pageview');
 <li>mds进入active状态</li>
 <li>生成了两个pool，128个pg</li>
 </ul>
-<h2><span id="挂载cephfs">挂载cephfs</span></h2>
-<p>cephfs支持两种方式挂载：</p>
+<h2><span id="挂载cephfs">挂载cephfs</span></h2><p>cephfs支持两种方式挂载：</p>
 <ul>
 <li>内核驱动</li>
 <li>使用fuse</li>
@@ -284,15 +271,13 @@ ga('send', 'pageview');
 <p>这是官网给出的两种挂载方式的对比：</p>
 <p>The <strong>FUSE client</strong> is the most accessible and the easiest to upgrade to the version of Ceph used by the storage cluster, while the <strong>kernel client</strong> will often give better performance.</p>
 <p>The clients do not always provide equivalent functionality, for example the <strong>fuse client</strong> supports client-enforced quotas while the <strong>kernel client</strong> does not.</p>
-<h3><span id="内核驱动-with-kernel">内核驱动 (with kernel)</span></h3>
-<p>ceph一个集群只支持创建一个cephfs,所以只要创建一次cephfs之后，就可以在客户端机器上创建目录并挂载到集群：</p>
+<h3><span id="内核驱动-with-kernel">内核驱动 (with kernel)</span></h3><p>ceph一个集群只支持创建一个cephfs,所以只要创建一次cephfs之后，就可以在客户端机器上创建目录并挂载到集群：</p>
 <p>在客户端机器上进行如下操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# mkdir -p /mycephfs</span><br><span class="line">[root@ceph-client ~]# mount -t ceph 192.168.56.101,192.168.56.102,192.168.56.103:6789:/ /mycephfs</span><br></pre></td></tr></table></figure>
 <p>查看挂载情况：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# df -h</span><br><span class="line">文件系统                                             容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/mapper/centos-root                               50G  1.6G   49G    4% /</span><br><span class="line">devtmpfs                                             485M     0  485M    0% /dev</span><br><span class="line">tmpfs                                                496M     0  496M    0% /dev/shm</span><br><span class="line">tmpfs                                                496M  6.8M  490M    2% /run</span><br><span class="line">tmpfs                                                496M     0  496M    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1                                           1014M  129M  886M   13% /boot</span><br><span class="line">/dev/mapper/centos-home                              347G   35M  347G    1% /home</span><br><span class="line">tmpfs                                                100M     0  100M    0% /run/user/0</span><br><span class="line">192.168.56.101,192.168.56.102,192.168.56.103:6789:/  5.4T     0  5.4T    0% /mycephfs</span><br></pre></td></tr></table></figure>
 <p>最后一行可以看到挂载成功。</p>
-<h3><span id="使用fuse-with-fuse">使用fuse (with fuse)</span></h3>
-<p>使用fuse方式进行挂载，需要安装ceph-fuse工具，</p>
+<h3><span id="使用fuse-with-fuse">使用fuse (with fuse)</span></h3><p>使用fuse方式进行挂载，需要安装ceph-fuse工具，</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# yum install ceph-fuse</span><br><span class="line"> ........</span><br><span class="line">已安装:</span><br><span class="line">  ceph-fuse.x86_64 2:12.2.9-0.el7</span><br><span class="line"></span><br><span class="line">作为依赖被安装:</span><br><span class="line">  fuse-libs.x86_64 0:2.9.2-10.el7    gperftools-libs.x86_64 0:2.6.1-1.el7    libibverbs.x86_64 0:15-7.el7_5    pciutils.x86_64 0:3.5.1-3.el7</span><br><span class="line">  rdma-core.x86_64 0:15-7.el7_5</span><br><span class="line"></span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# ceph-fuse -v</span><br><span class="line">ceph version 12.2.9 (9e300932ef8a8916fb3fda78c58691a6ab0f4217) luminous (stable)</span><br></pre></td></tr></table></figure>
 <p>ceph-fuse安装完成。</p>
@@ -300,8 +285,7 @@ ga('send', 'pageview');
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# mkdir /fusefs</span><br><span class="line">[root@ceph-client ~]# ceph-fuse -m 192.168.56.101:6789 /fusefs</span><br><span class="line">ceph-fuse[10854]: starting ceph client</span><br><span class="line">ceph-fuse[10854]: starting fuse</span><br></pre></td></tr></table></figure>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-client ~]# df -h</span><br><span class="line">文件系统                                             容量  已用  可用 已用% 挂载点</span><br><span class="line">/dev/mapper/centos-root                               50G  1.6G   49G    4% /</span><br><span class="line">devtmpfs                                             485M     0  485M    0% /dev</span><br><span class="line">tmpfs                                                496M     0  496M    0% /dev/shm</span><br><span class="line">tmpfs                                                496M  6.8M  490M    2% /run</span><br><span class="line">tmpfs                                                496M     0  496M    0% /sys/fs/cgroup</span><br><span class="line">/dev/sda1                                           1014M  129M  886M   13% /boot</span><br><span class="line">/dev/mapper/centos-home                              347G   35M  347G    1% /home</span><br><span class="line">tmpfs                                                100M     0  100M    0% /run/user/0</span><br><span class="line">192.168.56.101,192.168.56.102,192.168.56.103:6789:/  5.4T     0  5.4T    0% /mycephfs</span><br><span class="line">ceph-fuse                                            5.4T     0  5.4T    0% /fusefs</span><br></pre></td></tr></table></figure>
 <p>查看最后一行，说明挂载成功。</p>
-<h1><span id="总结">总结</span></h1>
-<p>本篇主要介绍了cephfs的架构以及在ceph集群上挂载cephfs的流程。</p>
+<h1><span id="总结">总结</span></h1><p>本篇主要介绍了cephfs的架构以及在ceph集群上挂载cephfs的流程。</p>
 
             </div>
         

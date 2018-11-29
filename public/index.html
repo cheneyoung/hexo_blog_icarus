@@ -263,9 +263,9 @@ ga('send', 'pageview');
                 
                 
                     
-                    <p></p><h1><span id="问题描述">问题描述：</span></h1>
-<p>Every email consists of a local name and a domain name, separated by the @ sign.</p>
-<p>For example, in <code>alice@leetcode.com</code>, <code>alice</code> is the local name, and <code>leetcode.com</code> is the domain name.</p>
+                    <p></p><h1><span id="问题描述">问题描述：</span></h1><p>Every email consists of a local name and a domain name, separated by the @ sign.</p>
+<p>For example, in <a href="mailto:`alice@leetcode.com" target="_blank" rel="noopener">`alice@leetcode.com</a><code>,</code>alice<code>is the local name, and</code>leetcode.com` is the domain name.</p>
+<p>Besides lowercase letters, these emails may contain <code>&#39;.&#39;</code>s or <code>&#39;+&#39;</code>s.</p>
 <p>
                 
              
@@ -334,9 +334,9 @@ ga('send', 'pageview');
                 
                 
                     
-                    <p></p><h1><span id="问题描述">问题描述：</span></h1>
-<p>You’re given strings <code>J</code> representing the types of stones that are jewels, and <code>S</code> representing the stones you have.  Each character in <code>S</code>is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
+                    <p></p><h1><span id="问题描述">问题描述：</span></h1><p>You’re given strings <code>J</code> representing the types of stones that are jewels, and <code>S</code> representing the stones you have.  Each character in <code>S</code>is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
 <p>The letters in <code>J</code> are guaranteed distinct, and all characters in <code>J</code> and <code>S</code> are letters. Letters are case sensitive, so <code>&quot;a&quot;</code> is considered a different type of stone from <code>&quot;A&quot;</code>.</p>
+<p><strong>Example 1:</strong></p>
 <p>
                 
              
@@ -405,7 +405,7 @@ ga('send', 'pageview');
                 
                 
                     
-                    <p></p><p>基于<a href="https://www.zuoyangblog.com/post/28a4bfb3.html">上一篇</a>，我们搭建好了一个健康的ceph集群：</p>
+                    <p></p><p>基于<a href="https://www.zuoyangblog.com/post/manual-deploy-ceph.html">第三篇</a>，我们搭建好了一个健康的ceph集群：</p>
 <ul>
 <li>3个mon节点组成的mon集群</li>
 <p>
@@ -477,8 +477,8 @@ ga('send', 'pageview');
                 
                     
                     <p></p><p>上篇介绍了部署Ceph的环境准备工作，本篇主要内容是介绍手动部署Ceph的全过程。</p>
-<h1><span id="环境">环境</span></h1>
-<h2><span id="集群环境">集群环境</span></h2>
+<h1><span id="环境">环境</span></h1><h2><span id="集群环境">集群环境</span></h2><p><a href="https://www.zuoyangblog.com/post/ceph-enviroment-set.html">第二篇</a>，我们创建了3台虚拟机，虚拟机配置如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ~]# lsblk</span><br><span class="line">NAME            MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda               8:0    0  100G  0 disk</span><br><span class="line">├─sda1            8:1    0    1G  0 part /boot</span><br><span class="line">└─sda2            8:2    0   99G  0 part</span><br><span class="line">  ├─centos-root 253:0    0   50G  0 lvm  /</span><br><span class="line">  ├─centos-swap 253:1    0    2G  0 lvm  [SWAP]</span><br><span class="line">  └─centos-home 253:2    0   47G  0 lvm  /home</span><br><span class="line">sdb               8:16   0    2T  0 disk</span><br><span class="line">sdc               8:32   0    2T  0 disk</span><br><span class="line">sdd               8:48   0    2T  0 disk</span><br><span class="line">sde               8:64   0  600G  0 disk</span><br><span class="line">sr0              11:0    1 1024M  0 rom</span><br></pre></td></tr></table></figure>
 <p>
                 
              
