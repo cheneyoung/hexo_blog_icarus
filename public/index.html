@@ -170,7 +170,7 @@ ga('send', 'pageview');
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                30
+                31
                 <span>posts</span>
             </div>
             <div class="article-info-block">
@@ -214,6 +214,77 @@ ga('send', 'pageview');
             
             
             <section id="main">
+    <article id="post-cephfs-performance-optimization" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="post/cephfs-performance-optimization.html" style="color: #009688;font-size:1.5em;">cephfs_performance_optimization</a>
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="categories/ceph/">ceph</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="tags/cephfs/">cephfs</a>
+    </div>
+
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <p></p><h1><span id="背景">背景</span></h1><p>最近由于工作需要，需要使用cephfs替换nas，因此搭建了ceph集群，并在此基础上创建了cephfs文件系统供其他同学使用，刚开始的时候还好，但是随着使用的用户数及文件数目越来越多，cephfs的性能问题就逐渐凸显出来，他们反馈在cephfs客户端上操作时会出现以下两种情况：</p>
+<ol>
+<li>通过vim编辑文件时十分卡顿，打开或者保存文件有很明显的延时；</li>
+<p>
+                
+             
+        
+        
+            </p></ol></div>   
+            <div class="article-more-link">
+                <a href="post/cephfs-performance-optimization.html#more">Read More</a>
+            </div>
+        
+        </div>
+        
+    
+    
+</article>
+
+
+
+
     <article id="post-Unique-Email-Addresses" class="article article-type-post" itemscope="" itemprop="blogPost">
     <div class="article-inner">
         
@@ -618,9 +689,9 @@ ga('send', 'pageview');
                 
                 
                     
-                    <p></p><h1><span id="ceph架构简介">Ceph架构简介</span></h1>
-<p>最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。</p>
-<h2><span id="ceph">Ceph</span></h2>
+                    <p></p><h1><span id="ceph架构简介">Ceph架构简介</span></h1><p>最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。</p>
+<h2><span id="ceph">Ceph</span></h2><p>Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。</p>
+<p>Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStack都可与Ceph整合以支持虚拟机镜像的后端存储。</p>
 <p>
                 
              
@@ -691,8 +762,8 @@ ga('send', 'pageview');
                     
                     <p></p><p><strong>问题描述：</strong></p>
 <p>Given an array of integers, every element appears twice except for one. Find that single one.</p>
-<p>Note:<br>
-</p><p>
+<p>Note:<br>Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?</p>
+<p>
                 
              
         
@@ -831,9 +902,9 @@ ga('send', 'pageview');
                 
                 
                     
-                    <p></p><p><strong>问题描述：</strong><br>
-Given a binary tree, find its maximum depth.</p>
+                    <p></p><p><strong>问题描述：</strong><br>Given a binary tree, find its maximum depth.</p>
 <p>The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.</p>
+<p><strong>解决思路：</strong></p>
 <p>
                 
              
@@ -853,79 +924,8 @@ Given a binary tree, find its maximum depth.</p>
 
 
 
-    <article id="post-Same-Tree" class="article article-type-post" itemscope="" itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-            <header class="article-header">
-                
-    
-        <h1 itemprop="name">
-            <a class="article-title" href="post/Same-Tree.html" style="color: #009688;font-size:1.5em;">Same Tree</a>
-        </h1>
-    
-
-                
-                    <div class="article-meta">
-                        
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="categories/leetcode/">leetcode</a>
-    </div>
-
-                        
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="tags/Binary-Tree/">Binary Tree</a>, <a class="tag-link" href="tags/C/">C++</a>, <a class="tag-link" href="tags/DFS/">DFS</a>
-    </div>
-
-                        
-                    </div>
-                
-            </header>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <p></p><p><strong>问题描述：</strong></p>
-<p>Given two binary trees, write a function to check if they are equal or not.</p>
-<p>Two binary trees are considered equal if they are structurally identical and the nodes have the same value.</p>
-<p>
-                
-             
-        
-        
-            </p></div>   
-            <div class="article-more-link">
-                <a href="post/Same-Tree.html#more">Read More</a>
-            </div>
-        
-        </div>
-        
-    
-    
-</article>
-
-
-
-
     <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="extend next" rel="next" href="page/2/">Next &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="page-number" href="page/3/">3</a><a class="page-number" href="page/4/">4</a><a class="extend next" rel="next" href="page/2/">Next &raquo;</a>
     </nav>
 </section>
             
@@ -935,7 +935,7 @@ Given a binary tree, find its maximum depth.</p>
     <div class="widget-wrap">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/ceph/">ceph</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="categories/leetcode/">leetcode</a><span class="category-list-count">26</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="categories/ceph/">ceph</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="categories/leetcode/">leetcode</a><span class="category-list-count">26</span></li></ul>
         </div>
     </div>
 
@@ -944,7 +944,7 @@ Given a binary tree, find its maximum depth.</p>
     <div class="widget-wrap">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="tags/BST/" style="font-size: 10px;">BST</a> <a href="tags/Binary-Tree/" style="font-size: 18px;">Binary Tree</a> <a href="tags/C/" style="font-size: 20px;">C++</a> <a href="tags/DFS/" style="font-size: 14px;">DFS</a> <a href="tags/List/" style="font-size: 14px;">List</a> <a href="tags/Stack/" style="font-size: 10px;">Stack</a> <a href="tags/String/" style="font-size: 10px;">String</a> <a href="tags/ceph/" style="font-size: 16px;">ceph</a> <a href="tags/ceph-mgr/" style="font-size: 10px;">ceph-mgr</a> <a href="tags/ceph-mon/" style="font-size: 10px;">ceph-mon</a> <a href="tags/ceph-osd/" style="font-size: 10px;">ceph-osd</a> <a href="tags/cephfs/" style="font-size: 10px;">cephfs</a> <a href="tags/python/" style="font-size: 10px;">python</a> <a href="tags/string/" style="font-size: 12px;">string</a> <a href="tags/virtualBox/" style="font-size: 10px;">virtualBox</a>
+            <a href="tags/BST/" style="font-size: 10px;">BST</a> <a href="tags/Binary-Tree/" style="font-size: 18px;">Binary Tree</a> <a href="tags/C/" style="font-size: 20px;">C++</a> <a href="tags/DFS/" style="font-size: 14px;">DFS</a> <a href="tags/List/" style="font-size: 14px;">List</a> <a href="tags/Stack/" style="font-size: 10px;">Stack</a> <a href="tags/String/" style="font-size: 10px;">String</a> <a href="tags/ceph/" style="font-size: 16px;">ceph</a> <a href="tags/ceph-mgr/" style="font-size: 10px;">ceph-mgr</a> <a href="tags/ceph-mon/" style="font-size: 10px;">ceph-mon</a> <a href="tags/ceph-osd/" style="font-size: 10px;">ceph-osd</a> <a href="tags/cephfs/" style="font-size: 12px;">cephfs</a> <a href="tags/python/" style="font-size: 10px;">python</a> <a href="tags/string/" style="font-size: 12px;">string</a> <a href="tags/virtualBox/" style="font-size: 10px;">virtualBox</a>
         </div>
     </div>
 
@@ -978,7 +978,7 @@ Given a binary tree, find its maximum depth.</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 zuoyang<br>
+            &copy; 2019 zuoyang<br>
                <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
                <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
                访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人

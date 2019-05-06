@@ -4,11 +4,12 @@ comments: true
 author: zuoyang
 type: 原创
 toc: true
-date: 2019-01-09 00:02:07
 categories:
-	- ceph
+  - ceph
 tags:
-	- cephfs
+  - cephfs
+abbrlink: 63586
+date: 2019-01-09 00:02:07
 ---
 
 # 背景
@@ -20,7 +21,7 @@ tags:
 
 
 
-# 1、本次优化参数如下：
+# 本次优化参数如下：
 
 ```shell
 osd journal size = 20000 #默认5120                      #osd journal大小
@@ -231,9 +232,9 @@ sudo ceph daemon osd.2 set filestore_op_threads 32
 
 
 
-# 2、各参数介绍
+# 各参数介绍
 
-## 2.1 osd配置优化
+## osd配置优化
 
 ### [osd] - filestore
 
@@ -361,7 +362,7 @@ filestore_apply_finisher_threads = 2   默认值 1
 
 
 
-## 2.2 OS端配置
+## OS端配置
 
 ### Kernel pid max (线上机器无法修改)
 

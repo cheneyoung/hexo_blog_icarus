@@ -5,13 +5,13 @@
     
     <title>第一篇：Ceph简介 | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Ceph架构简介 最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 Ceph Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenSt">
+    <meta name="description" content="Ceph架构简介最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 CephCeph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStac">
 <meta name="keywords" content="ceph">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第一篇：Ceph简介">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/Ceph_introduction.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="Ceph架构简介 最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 Ceph Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenSt">
+<meta property="og:description" content="Ceph架构简介最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 CephCeph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStac">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/Ceph_introduction/rados.jpg">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/Ceph_introduction/ceph-architectural.png">
@@ -25,7 +25,7 @@
 <meta property="og:updated_time" content="2018-11-19T13:33:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第一篇：Ceph简介">
-<meta name="twitter:description" content="Ceph架构简介 最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 Ceph Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenSt">
+<meta name="twitter:description" content="Ceph架构简介最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。 CephCeph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。 Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStac">
 <meta name="twitter:image" content="https://www.zuoyangblog.com/post/Ceph_introduction/rados.jpg">
     
 
@@ -221,35 +221,19 @@ ga('send', 'pageview');
             
         
         
-            <h1><span id="ceph架构简介">Ceph架构简介</span></h1>
-<p>最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。</p>
-<h2><span id="ceph">Ceph</span></h2>
-<p>Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。</p>
+            <h1><span id="ceph架构简介">Ceph架构简介</span></h1><p>最近工作中要使用ceph作为底层存储架构，故对其进行了一番调研，本篇乃ceph系列的第一篇。</p>
+<h2><span id="ceph">Ceph</span></h2><p>Ceph是一个统一的分布式存储系统，设计初衷是提供较好的性能、可靠性和可扩展性。</p>
 <p>Ceph项目最早起源于Sage就读博士期间的工作（最早的成果于2004年发表），并随后贡献给开源社区。在经过了数年的发展之后，目前已得到众多云计算厂商的支持并被广泛应用。RedHat及OpenStack都可与Ceph整合以支持虚拟机镜像的后端存储。</p>
 <p>Ceph is a distributed object, block, and file storage platform.</p>
 <p>使用Ceph系统可以提供<strong>对象存储</strong>、<strong>块设备存储</strong>和<strong>文件系统服务</strong>.</p>
 <p>Ceph底层提供了分布式的RADOS存储，用与支撑上层的librados和RGW、RBD、CephFS等服务。Ceph实现了非常底层的object storage，是纯粹的SDS，并且支持通用的ZFS、BtrFS和Ext4文件系统，能轻易得Scale，没有单点故障。</p>
-<h2><span id="ceph特点">Ceph特点</span></h2>
-<ul>
-<li>高性能<br>
-a. 摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。<br>
-b.考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。<br>
-c. 能够支持上千个存储节点的规模，支持TB到PB级的数据。</li>
-<li>高可用性<br>
-a. 副本数可以灵活控制。<br>
-b. 支持故障域分隔，数据强一致性。<br>
-c. 多种故障场景自动进行修复自愈。<br>
-d. 没有单点故障，自动管理。</li>
-<li>高可扩展性<br>
-a. 去中心化。<br>
-b. 扩展灵活。<br>
-c. 随着节点增加而线性增长。</li>
-<li>特性丰富<br>
-a. 支持三种存储接口：块存储、文件存储、对象存储。<br>
-b. 支持自定义接口，支持多种语言驱动。</li>
+<h2><span id="ceph特点">Ceph特点</span></h2><ul>
+<li>高性能<br>a. 摒弃了传统的集中式存储元数据寻址的方案，采用CRUSH算法，数据分布均衡，并行度高。<br>b.考虑了容灾域的隔离，能够实现各类负载的副本放置规则，例如跨机房、机架感知等。<br>c. 能够支持上千个存储节点的规模，支持TB到PB级的数据。</li>
+<li>高可用性<br>a. 副本数可以灵活控制。<br>b. 支持故障域分隔，数据强一致性。<br>c. 多种故障场景自动进行修复自愈。<br>d. 没有单点故障，自动管理。</li>
+<li>高可扩展性<br>a. 去中心化。<br>b. 扩展灵活。<br>c. 随着节点增加而线性增长。</li>
+<li>特性丰富<br>a. 支持三种存储接口：块存储、文件存储、对象存储。<br>b. 支持自定义接口，支持多种语言驱动。</li>
 </ul>
-<h2><span id="ceph架构">Ceph架构</span></h2>
-<p><strong>支持三种接口：</strong></p>
+<h2><span id="ceph架构">Ceph架构</span></h2><p><strong>支持三种接口：</strong></p>
 <ul>
 <li>Object：有原生的API，而且也兼容Swift和S3的API。</li>
 <li>Block：支持精简配置、快照、克隆。</li>
@@ -257,60 +241,44 @@ b. 支持自定义接口，支持多种语言驱动。</li>
 </ul>
 <img src="/post/Ceph_introduction/rados.jpg" title="rados">
 <img src="/post/Ceph_introduction/ceph-architectural.png" title="ceph-architectural">
-<h2><span id="ceph核心组件及概念介绍">Ceph核心组件及概念介绍</span></h2>
-<img src="/post/Ceph_introduction/ceph_all_component.png" title="ceph-all-component">
+<h2><span id="ceph核心组件及概念介绍">Ceph核心组件及概念介绍</span></h2><img src="/post/Ceph_introduction/ceph_all_component.png" title="ceph-all-component">
 <ul>
-<li>
-<p>Monitor</p>
+<li><p>Monitor   </p>
 <p>一个Ceph集群需要多个Monitor组成的小集群，它们通过Paxos同步数据，用来保存OSD的元数据。</p>
 </li>
-<li>
-<p>OSD</p>
+<li><p>OSD </p>
 <p>OSD全称Object Storage Device，也就是负责响应客户端请求返回具体数据的进程。一个Ceph集群一般都有很多个OSD。</p>
 </li>
-<li>
-<p>MDS</p>
+<li><p>MDS </p>
 <p>MDS全称Ceph Metadata Server，是CephFS服务依赖的元数据服务。</p>
 </li>
-<li>
-<p>Object</p>
+<li><p>Object </p>
 <p>Ceph最底层的存储单元是Object对象，每个Object包含元数据和原始数据。</p>
 </li>
-<li>
-<p>PG</p>
+<li><p>PG </p>
 <p>PG全称Placement Grouops，是一个逻辑的概念，一个PG包含多个OSD。引入PG这一层其实是为了更好的分配数据和定位数据。</p>
 </li>
-<li>
-<p>RADOS</p>
+<li><p>RADOS </p>
 <p>RADOS全称Reliable Autonomic Distributed Object Store，是Ceph集群的精华，用户实现数据分配、Failover等集群操作。</p>
 </li>
-<li>
-<p>Libradio</p>
+<li><p>Libradio </p>
 <p>Librados是Rados提供库，因为RADOS是协议很难直接访问，因此上层的RBD、RGW和CephFS都是通过librados访问的，目前提供PHP、Ruby、Java、Python、C和C++支持。</p>
 </li>
-<li>
-<p>CRUSH</p>
+<li><p>CRUSH </p>
 <p>CRUSH是Ceph使用的数据分布算法，类似一致性哈希，让数据分配到预期的地方。</p>
 </li>
-<li>
-<p>RBD</p>
+<li><p>RBD </p>
 <p>RBD全称RADOS block device，是Ceph对外提供的块设备服务。</p>
 </li>
-<li>
-<p>RGW</p>
+<li><p>RGW </p>
 <p>RGW全称RADOS gateway，是Ceph对外提供的对象存储服务，接口与S3和Swift兼容。</p>
 </li>
-<li>
-<p>CephFS</p>
+<li><p>CephFS </p>
 <p>CephFS全称Ceph File System，是Ceph对外提供的文件系统服务。</p>
 </li>
 </ul>
-<h1><span id="ceph-filesystem">CEPH Filesystem</span></h1>
-<h2><span id="文件存储">文件存储</span></h2>
-<img src="/post/Ceph_introduction/ceph_file.jpg" title="file-system">
-<p><strong>典型设备：</strong> FTP、NFS服务器<br>
-为了克服块存储文件无法共享的问题，所以有了文件存储。<br>
-在服务器上架设FTP与NFS服务，就是文件存储。</p>
+<h1><span id="ceph-filesystem">CEPH Filesystem</span></h1><h2><span id="文件存储">文件存储</span></h2><img src="/post/Ceph_introduction/ceph_file.jpg" title="file-system">
+<p><strong>典型设备：</strong> FTP、NFS服务器<br>为了克服块存储文件无法共享的问题，所以有了文件存储。<br>在服务器上架设FTP与NFS服务，就是文件存储。</p>
 <p><strong>优点：</strong></p>
 <ul>
 <li>造价低，随便一台机器就可以了。</li>
@@ -327,15 +295,12 @@ b. 支持自定义接口，支持多种语言驱动。</li>
 <li>有目录结构的文件存储。</li>
 <li>…</li>
 </ul>
-<h2><span id="ceph-文件系统">Ceph 文件系统</span></h2>
-<p>Ceph 文件系统（ Ceph FS ）是个 POSIX 兼容的文件系统，它使用 Ceph 存储集群来存储数据。 Ceph 文件系统与 Ceph 块设备、同时提供 S3 和 Swift API 的 Ceph 对象存储、或者原生库（ librados ）一样，都使用着相同的 Ceph 存储集群系统。</p>
+<h2><span id="ceph-文件系统">Ceph 文件系统</span></h2><p>Ceph 文件系统（ Ceph FS ）是个 POSIX 兼容的文件系统，它使用 Ceph 存储集群来存储数据。 Ceph 文件系统与 Ceph 块设备、同时提供 S3 和 Swift API 的 Ceph 对象存储、或者原生库（ librados ）一样，都使用着相同的 Ceph 存储集群系统。 </p>
 <p><img src="http://docs.ceph.org.cn/_images/ditaa-b5a320fc160057a1a7da010b4215489fa66de242.png" alt="cephfs"></p>
 <p>Ceph 文件系统要求 Ceph 存储集群内至少有一个 Ceph 元数据服务器。</p>
 <p>当前， CephFS 还缺乏健壮得像 ‘fsck’ 这样的检查和修复功能。存储重要数据时需小心使用，因为灾难恢复工具还没开发完。</p>
 <p>cephfs目前发展比较慢，之前一直没有稳定版本，2016年4月21日官方发布的jewel V10.2.0才公布第一个稳定版本，当前在生产环节中使用很少，所以还是建议谨慎使用，如果要使用需要进行严格的测试后才能上线。</p>
-<h1><span id="ceph-block-device">CEPH Block Device</span></h1>
-<h2><span id="块存储">块存储</span></h2>
-<img src="/post/Ceph_introduction/disk.jpg" title="block device">
+<h1><span id="ceph-block-device">CEPH Block Device</span></h1><h2><span id="块存储">块存储</span></h2><img src="/post/Ceph_introduction/disk.jpg" title="block device">
 <p><strong>典型设备：</strong> 磁盘阵列，硬盘</p>
 <p>主要是将裸磁盘空间映射给主机使用的。</p>
 <p><strong>优点：</strong></p>
@@ -356,8 +321,7 @@ b. 支持自定义接口，支持多种语言驱动。</li>
 <li>文件存储。</li>
 <li>…</li>
 </ul>
-<h2><span id="ceph-块设备-rbd">Ceph 块设备 (RBD)</span></h2>
-<p>块是一个字节序列（例如，一个 512 字节的数据块）。基于块的存储接口是最常见的存储数据方法，它们基于旋转介质，像硬盘、 CD 、软盘、甚至传统的 9 磁道磁带。无处不在的块设备接口使虚拟块设备成为与 Ceph 这样的海量存储系统交互的理想之选。</p>
+<h2><span id="ceph-块设备-rbd">Ceph 块设备 (RBD)</span></h2><p>块是一个字节序列（例如，一个 512 字节的数据块）。基于块的存储接口是最常见的存储数据方法，它们基于旋转介质，像硬盘、 CD 、软盘、甚至传统的 9 磁道磁带。无处不在的块设备接口使虚拟块设备成为与 Ceph 这样的海量存储系统交互的理想之选。</p>
 <p>Ceph 块设备是精简配置的、大小可调且将数据条带化存储到集群内的多个 OSD 。 Ceph 块设备利用 RADOS 的多种能力，如快照、复制和一致性。 Ceph 的 RADOS 块设备（ RBD ）使用内核模块或 librbd 库与 OSD 交互。</p>
 <p><img src="http://docs.ceph.org.cn/_images/ditaa-dc9f80d771b55f2daa5cbbfdb2dd0d3e6dfc17c0.png" alt="rbd"></p>
 <p>内核模块可使用 Linux 页缓存。对基于 librbd 的应用程序， Ceph 可提供 RBD 缓存。</p>
@@ -365,12 +329,9 @@ b. 支持自定义接口，支持多种语言驱动。</li>
 <img src="/post/Ceph_introduction/ceph_rbd2.png" title="ceph-rbd">
 <p>Ceph 块设备靠无限伸缩性提供了高性能，如向内核模块、或向 abbr:KVM (kernel virtual machines) （如 Qemu 、 OpenStack 和 CloudStack等云计算系统通过 libvirt 和 Qemu 可与 Ceph 块设备集成）。你可以用同一个集群同时运行 Ceph RADOS gateway、 Ceph FS 文件系统、和 Ceph 块设备。</p>
 <p>目前ceph rbd在云平台使用比较广泛而且也很稳定，社区的支持力度也非常大。</p>
-<h1><span id="ceph-object-gateway">CEPH Object Gateway</span></h1>
-<h2><span id="对象存储">对象存储</span></h2>
-<p>对象存储是提供restful接口并数据组织形式扁平化的存储方法，对象存储同兼具块存储高速直接访问磁盘及文件存储的分布式共享特点。</p>
+<h1><span id="ceph-object-gateway">CEPH Object Gateway</span></h1><h2><span id="对象存储">对象存储</span></h2><p>对象存储是提供restful接口并数据组织形式扁平化的存储方法，对象存储同兼具块存储高速直接访问磁盘及文件存储的分布式共享特点。</p>
 
-<p><strong>典型设备：</strong> 内置大容量硬盘的分布式服务器(swift, s3)<br>
-多台服务器内置大容量硬盘，安装上对象存储管理软件，对外提供读写访问功能。</p>
+<p><strong>典型设备：</strong> 内置大容量硬盘的分布式服务器(swift, s3)<br>多台服务器内置大容量硬盘，安装上对象存储管理软件，对外提供读写访问功能。</p>
 <p><strong>优点：</strong></p>
 <ul>
 <li>具备块存储的读写高速。</li>
@@ -382,8 +343,7 @@ b. 支持自定义接口，支持多种语言驱动。</li>
 <li>视频存储。</li>
 <li>…</li>
 </ul>
-<h2><span id="ceph-对象存储-radosgw">Ceph 对象存储 (radosgw)</span></h2>
-<p>Ceph 对象网关是一个构建在 <code>librados</code> 之上的对象存储接口，它为应用程序访问Ceph 存储集群提供了一个 RESTful 风格的网关 。 Ceph 对象存储支持 2 种接口：</p>
+<h2><span id="ceph-对象存储-radosgw">Ceph 对象存储 (radosgw)</span></h2><p>Ceph 对象网关是一个构建在 <code>librados</code> 之上的对象存储接口，它为应用程序访问Ceph 存储集群提供了一个 RESTful 风格的网关 。 Ceph 对象存储支持 2 种接口：</p>
 <ol>
 <li><strong>兼容S3:</strong> 提供了对象存储接口，兼容大部分 亚马逊S3 RESTful 接口。</li>
 <li><strong>兼容Swift:</strong> 提供了对象存储接口，兼容大部分 Openstack Swift 接口。</li>
@@ -462,7 +422,7 @@ b. 支持自定义接口，支持多种语言驱动。</li>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 zuoyang<br>
+            &copy; 2019 zuoyang<br>
                <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
                <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
                访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人

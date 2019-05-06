@@ -5,13 +5,13 @@
     
     <title>第二篇：Ceph集群环境准备 | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境  至少3台物理机组成Ceph集群 双网卡   测试环境  1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群：  3台虚拟机组成mon集群   osd集群：">
+    <meta name="description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境 至少3台物理机组成Ceph集群 双网卡   测试环境 1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群： 3台虚拟机组成mon集群   osd集群： 3台虚拟">
 <meta name="keywords" content="ceph,virtualBox">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二篇：Ceph集群环境准备">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/ceph-enviroment-set.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境  至少3台物理机组成Ceph集群 双网卡   测试环境  1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群：  3台虚拟机组成mon集群   osd集群：">
+<meta property="og:description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境 至少3台物理机组成Ceph集群 双网卡   测试环境 1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群： 3台虚拟机组成mon集群   osd集群： 3台虚拟">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/ceph-enviroment-set/network.jpg">
 <meta property="og:image" content="https://www.zuoyangblog.com/post/ceph-enviroment-set/ip.jpg">
@@ -37,7 +37,7 @@
 <meta property="og:updated_time" content="2018-11-23T04:03:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第二篇：Ceph集群环境准备">
-<meta name="twitter:description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境  至少3台物理机组成Ceph集群 双网卡   测试环境  1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群：  3台虚拟机组成mon集群   osd集群：">
+<meta name="twitter:description" content="第一篇简单介绍了Ceph的架构，让我们对Ceph有了一个初步的印象。 接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。 集群规划：  生产环境 至少3台物理机组成Ceph集群 双网卡   测试环境 1台主机也可以 单网卡也可以    本文使用虚拟机搭建集群，集群设置如下：  mon集群： 3台虚拟机组成mon集群   osd集群： 3台虚拟">
 <meta name="twitter:image" content="https://www.zuoyangblog.com/post/ceph-enviroment-set/network.jpg">
     
 
@@ -237,14 +237,12 @@ ga('send', 'pageview');
 <p>接下来，我将在MAC上介绍如何基于本机搭建ceph集群及cephfs、cephrgw、cephrbd服务。</p>
 <p>集群规划：</p>
 <ul>
-<li>生产环境
-<ul>
+<li>生产环境<ul>
 <li>至少3台物理机组成Ceph集群</li>
 <li>双网卡</li>
 </ul>
 </li>
-<li>测试环境
-<ul>
+<li>测试环境<ul>
 <li>1台主机也可以</li>
 <li>单网卡也可以</li>
 </ul>
@@ -252,19 +250,16 @@ ga('send', 'pageview');
 </ul>
 <p>本文使用虚拟机搭建集群，集群设置如下：</p>
 <ul>
-<li>mon集群：
-<ul>
+<li>mon集群：<ul>
 <li>3台虚拟机组成mon集群</li>
 </ul>
 </li>
-<li>osd集群：
-<ul>
+<li>osd集群：<ul>
 <li>3台虚拟机组成osd集群</li>
 <li>每台虚拟机上3个osd进程</li>
 </ul>
 </li>
-<li>mgr集群：
-<ul>
+<li>mgr集群：<ul>
 <li>3个mgr进程</li>
 </ul>
 </li>
@@ -276,64 +271,48 @@ ga('send', 'pageview');
 <li>克隆虚拟机</li>
 <li></li>
 </ul>
-<h1><span id="软件准备">软件准备</span></h1>
-<h2><span id="安装virtualbox">安装VirtualBox</span></h2>
-<p>点击 <a href="http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg" target="_blank" rel="noopener">VirtualBox Mac版本</a>，下载VirtualBox，然后双击下载好的软件，按照提示一直安装即可。</p>
-<h3><span id="添加网络">添加网络</span></h3>
-<p>安装好之后，需要添加一个网络，这样可以保证在虚拟机里也能正常上网。具体操作如下：</p>
+<h1><span id="软件准备">软件准备</span></h1><h2><span id="安装virtualbox">安装VirtualBox</span></h2><p>点击 <a href="http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg" target="_blank" rel="noopener">VirtualBox Mac版本</a>，下载VirtualBox，然后双击下载好的软件，按照提示一直安装即可。</p>
+<h3><span id="添加网络">添加网络</span></h3><p>安装好之后，需要添加一个网络，这样可以保证在虚拟机里也能正常上网。具体操作如下：</p>
 <p>点击左上角的<code>VirtualBox-&gt;偏好设置-&gt;网络-&gt;仅主机(Host-Only)网络-&gt;</code>点击右边的绿色➕，一般会默认添加了<code>vboxnet0</code>，双击<code>vboxnet0</code>，可以看到网络的IP信息，默认为<code>192.168.56.1</code>，如下图：</p>
 <img src="/post/ceph-enviroment-set/network.jpg" title="配置网络">
 <img src="/post/ceph-enviroment-set/ip.jpg" title="默认IP">
-<h2><span id="下载centos镜像">下载CentOS镜像</span></h2>
-<p>点击<a href="http://mirrors.aliyun.com/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso" target="_blank" rel="noopener">CentOS 7.5 镜像Minimal</a> ，这里我们下载Minimal版本，后面操作的时候，我们直接通过配置虚拟机IP，使得本机可以直接ssh访问虚拟机进行操作。</p>
-<h1><span id="安装centos虚拟机">安装CentOS虚拟机</span></h1>
-<h2><span id="创建虚拟机">创建虚拟机</span></h2>
-<ul>
-<li>
-<p>打开VirtualBox，点击<code>新建</code>，这时会新建一个虚拟机，命名为<code>ceph-1</code>,类型选择<code>Linux</code>，版本选择<code>Linux 2.6/3.x/4.x 64bit</code>，具体见下图：</p>
+<h2><span id="下载centos镜像">下载CentOS镜像</span></h2><p>点击<a href="http://mirrors.aliyun.com/centos/7.5.1804/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso " target="_blank" rel="noopener">CentOS 7.5 镜像Minimal</a> ，这里我们下载Minimal版本，后面操作的时候，我们直接通过配置虚拟机IP，使得本机可以直接ssh访问虚拟机进行操作。</p>
+<h1><span id="安装centos虚拟机">安装CentOS虚拟机</span></h1><h2><span id="创建虚拟机">创建虚拟机</span></h2><ul>
+<li><p>打开VirtualBox，点击<code>新建</code>，这时会新建一个虚拟机，命名为<code>ceph-1</code>,类型选择<code>Linux</code>，版本选择<code>Linux 2.6/3.x/4.x 64bit</code>，具体见下图：</p>
 <img src="/post/ceph-enviroment-set/new.jpg" title="新建虚拟机">
 </li>
-<li>
-<p>内存设置：默认值为1G，直接下一步即可，如下图:</p>
+<li><p>内存设置：默认值为1G，直接下一步即可，如下图:</p>
 <img src="/post/ceph-enviroment-set/memory.jpg" title="设置内存大小">
 </li>
-<li>
-<p>创建虚拟硬盘：选择创建VDI，然后下一步，如下图:</p>
+<li><p>创建虚拟硬盘：选择创建VDI，然后下一步，如下图:</p>
 <img src="/post/ceph-enviroment-set/disk.jpg" title="创建虚拟硬盘">
 <img src="/post/ceph-enviroment-set/virtual_disk.jpg" title="创建虚拟硬盘">
 </li>
-<li>
-<p>存储在物理盘：这里有两个选项-<code>动态分配</code>或<code>固定大小</code>，这里选择<code>动态分配</code>，见下图:</p>
+<li><p>存储在物理盘：这里有两个选项-<code>动态分配</code>或<code>固定大小</code>，这里选择<code>动态分配</code>，见下图:</p>
 <img src="/post/ceph-enviroment-set/dynamic.jpg" title="动态分配">
 <ul>
 <li><code>动态分配</code>，这种方式下，创建一个2T的磁盘，实际只会占用计算机几十MB的空间，实际使用多少空间，才会占用多少空间，相当于用时分配。</li>
 <li><code>固定大小</code>，这种方式下，创建多大的盘就会占用多大的空间。</li>
 </ul>
 </li>
-<li>
-<p>文件位置与大小：将空间大小设置为100G，这是用于系统盘。然后点击创建即可:</p>
+<li><p>文件位置与大小：将空间大小设置为100G，这是用于系统盘。然后点击创建即可:</p>
 <img src="/post/ceph-enviroment-set/disk_size.jpg" title="系统盘大小">
 </li>
 </ul>
 <p>至此，虚拟机创建完成。</p>
-<h2><span id="配置虚拟机">配置虚拟机</span></h2>
-<h3><span id="添加centos镜像">添加CentOS镜像</span></h3>
-<p>选择刚刚创建好的虚拟机，点击<code>设置</code>-&gt;<code>存储</code>-&gt;<code>控制器:IDE</code>-&gt;<code>没有盘片</code>，点击右侧的光盘按钮，将刚刚下载的CentOS的镜像添加进来，如下图所示：</p>
+<h2><span id="配置虚拟机">配置虚拟机</span></h2><h3><span id="添加centos镜像">添加CentOS镜像</span></h3><p>选择刚刚创建好的虚拟机，点击<code>设置</code>-&gt;<code>存储</code>-&gt;<code>控制器:IDE</code>-&gt;<code>没有盘片</code>，点击右侧的光盘按钮，将刚刚下载的CentOS的镜像添加进来，如下图所示：</p>
 <img src="/post/ceph-enviroment-set/addios.jpg" title="添加CentOS镜像">
-<h3><span id="添加3个2t磁盘">添加3个2T磁盘</span></h3>
-<p>点击<code>控制器:SATA</code>旁边的方形加号，添加SATA盘，<code>创建新的虚拟盘-&gt; VHD-&gt; 动态分配 -&gt; 2TB</code>.</p>
+<h3><span id="添加3个2t磁盘">添加3个2T磁盘</span></h3><p>点击<code>控制器:SATA</code>旁边的方形加号，添加SATA盘，<code>创建新的虚拟盘-&gt; VHD-&gt; 动态分配 -&gt; 2TB</code>.</p>
 <p>步骤如下图：</p>
 <img src="/post/ceph-enviroment-set/newvhd.jpg" title="添加虚拟磁盘">
 <img src="/post/ceph-enviroment-set/newvhd2.jpg" title="添加虚拟磁盘">
 <img src="/post/ceph-enviroment-set/finish.jpg" title="完成虚拟盘创建">
-<h3><span id="配置网络">配置网络</span></h3>
-<p>点击<code>设置-&gt; 网络-&gt; 网卡 1-&gt; 连接方式 -&gt; 网络地址转换(NAT)</code>，用于给VM上网，如下图所示：</p>
+<h3><span id="配置网络">配置网络</span></h3><p>点击<code>设置-&gt; 网络-&gt; 网卡 1-&gt; 连接方式 -&gt; 网络地址转换(NAT)</code>，用于给VM上网，如下图所示：</p>
 <img src="/post/ceph-enviroment-set/adapter1.jpg" title="配置网卡1">
 <p>点击<code>网卡2 -&gt; 勾选启用网络连接 -&gt; 连接方式 -&gt; 仅主机(Host-only)网络 -&gt; 界面名称 -&gt; vboxnet0</code>这里的<code>vboxnet0</code>是在上一步中添加的，如下图所示：</p>
 <img src="/post/ceph-enviroment-set/adapter2.jpg" title="配置网络">
 <p>虚拟机配置完成，接下来进行安装CentOS。</p>
-<h3><span id="安装centos">安装CentOS</span></h3>
-<p>启动刚刚创建的虚拟机，Install CentOS 7，一直往下点，然后出现下面的页面：</p>
+<h3><span id="安装centos">安装CentOS</span></h3><p>启动刚刚创建的虚拟机，Install CentOS 7，一直往下点，然后出现下面的页面：</p>
 <img src="/post/ceph-enviroment-set/install_os1.jpg" title="安装CentOS1">
 <p>点击红框中的选项，然后Begin Install：</p>
 <img src="/post/ceph-enviroment-set/install_os2.jpg" title="安装CentOS2">
@@ -342,12 +321,9 @@ ga('send', 'pageview');
 <img src="/post/ceph-enviroment-set/user.jpg" title="添加用户">
 <img src="/post/ceph-enviroment-set/user_set.jpg" title="设置账号密码">
 <p>之后一直等就可以了，最后重启机器，安装完成。</p>
-<h3><span id="配置网卡">配置网卡</span></h3>
-<h4><span id="修改ifcfg-enp0s3">修改ifcfg-enp0s3</span></h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br></pre></td></tr></table></figure>
+<h3><span id="配置网卡">配置网卡</span></h3><h4><span id="修改ifcfg-enp0s3">修改ifcfg-enp0s3</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s3</span><br></pre></td></tr></table></figure>
 <p>将最后一行的<code>ONBOOT=no</code>改为<code>ONBOOT=yes</code>,添加IPADDR，NETMASK，这个是<code>网卡1</code>，用于给虚拟机上网。</p>
-<h4><span id="修改ifcfg-enp0s8">修改ifcfg-enp0s8</span></h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s8</span><br><span class="line"><span class="meta">#</span><span class="bash">修改以下几个配置项</span></span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.56.101 #因为vboxnet0的IP为192.168.56.1</span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
+<h4><span id="修改ifcfg-enp0s8">修改ifcfg-enp0s8</span></h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-enp0s8</span><br><span class="line"><span class="meta">#</span><span class="bash">修改以下几个配置项</span></span><br><span class="line">BOOTPROTO=static</span><br><span class="line">ONBOOT=yes</span><br><span class="line">IPADDR=192.168.56.101 #因为vboxnet0的IP为192.168.56.1</span><br><span class="line">NETMASK=255.255.255.0</span><br></pre></td></tr></table></figure>
 <p>重启网卡并检查联网状态：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br><span class="line">ping www.baidu.com</span><br><span class="line">PING www.a.shifen.com (115.239.211.112) 56(84) bytes of data.</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=1 ttl=63 time=2.79 ms</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=2 ttl=63 time=25.7 ms</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=3 ttl=63 time=3.58 ms</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=5 ttl=63 time=3.62 ms</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=6 ttl=63 time=2.97 ms</span><br><span class="line">64 bytes from 115.239.211.112 (115.239.211.112): icmp_seq=7 ttl=63 time=2.99 ms</span><br></pre></td></tr></table></figure>
 <p>修改主机名<code>hostname</code>:</p>
@@ -357,31 +333,24 @@ ga('send', 'pageview');
 <p>登录到虚拟机：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ssh root@192.168.56.101</span><br><span class="line">The authenticity of host '192.168.56.101 (192.168.56.101)' can't be established.</span><br><span class="line">ECDSA key fingerprint is SHA256:uuwVZ9O8+0KypxxJUgZLANVYMOFKY2QAd1Jv7Fa2fQE.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added '192.168.56.101' (ECDSA) to the list of known hosts.</span><br><span class="line">root@192.168.56.101's password:</span><br><span class="line">Last login: Wed Nov 21 01:08:21 2018</span><br><span class="line">[root@ceph-1 ~]#</span><br></pre></td></tr></table></figure>
 <p>登录成功之后开始进行下面的操作。</p>
-<h3><span id="修改yum源">修改yum源</span></h3>
-<p>这里将yum源修改成aliyun的源，指令如下:</p>
+<h3><span id="修改yum源">修改yum源</span></h3><p>这里将yum源修改成aliyun的源，指令如下:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">curl http://mirrors.aliyun.com/repo/Centos-7.repo &gt;/etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">curl http://mirrors.aliyun.com/repo/epel-7.repo &gt;/etc/yum.repos.d/epel.repo </span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/CentOS-Base.repo</span><br><span class="line">sed -i '/aliyuncs/d' /etc/yum.repos.d/epel.repo</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
 <p>安装软件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget ntp vim</span><br></pre></td></tr></table></figure>
-<h2><span id="虚拟机ceph软件安装">虚拟机ceph软件安装</span></h2>
-<h3><span id="配置ceph源">配置ceph源</span></h3>
-<p>在<code>/etc/yum.repos.d/</code>目录下新增一个ceph源文件<code>ceph.repo</code>,并写入下面内容：</p>
+<h2><span id="虚拟机ceph软件安装">虚拟机ceph软件安装</span></h2><h3><span id="配置ceph源">配置ceph源</span></h3><p>在<code>/etc/yum.repos.d/</code>目录下新增一个ceph源文件<code>ceph.repo</code>,并写入下面内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/ceph.repo</span><br><span class="line"><span class="meta">#</span><span class="bash">写入以下内容</span></span><br><span class="line">[ceph]</span><br><span class="line">name=ceph</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/x86_64/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-noarch]</span><br><span class="line">name=cephnoarch</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/noarch/</span><br><span class="line">gpgcheck=0</span><br><span class="line">[ceph-source]</span><br><span class="line">name=ceph-source</span><br><span class="line">baseurl=http://mirrors.aliyun.com/ceph/rpm-luminous/el7/SRPMS/</span><br><span class="line">gpgcheck=0</span><br></pre></td></tr></table></figure>
-<h3><span id="安装ceph">安装ceph</span></h3>
-<p>执行以下命令安装ceph:</p>
+<h3><span id="安装ceph">安装ceph</span></h3><p>执行以下命令安装ceph:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum clean all &amp;&amp; yum makecache</span><br><span class="line">yum -y install yum-plugin-priorities </span><br><span class="line">yum -y install openssh-server</span><br><span class="line">yum -y install ceph ceph-radosgw</span><br></pre></td></tr></table></figure>
 <p>验证ceph是否安装完成：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@ceph-1 ~]# ceph -v</span><br><span class="line">ceph version 12.2.9 (9e300932ef8a8916fb3fda78c58691a6ab0f4217) luminous (stable)</span><br></pre></td></tr></table></figure>
 <p>说明ceph安装成功。</p>
 <p>至此，第一台虚拟机创建完成，然后关机。</p>
-<h1><span id="克隆虚拟机">克隆虚拟机</span></h1>
-<h2><span id="克隆机器">克隆机器</span></h2>
-<p>点击刚刚创建好的虚拟机，然后右键点击复制，</p>
+<h1><span id="克隆虚拟机">克隆虚拟机</span></h1><h2><span id="克隆机器">克隆机器</span></h2><p>点击刚刚创建好的虚拟机，然后右键点击复制，</p>
 <p>重命名虚拟机为<code>ceph-2</code>，并勾选重新初始化MAC和网卡选项。</p>
 <img src="/post/ceph-enviroment-set/clone2.jpg">
 <p>点击继续，然后勾选完全复制</p>
 <img src="/post/ceph-enviroment-set/clone3.jpg">
-<h2><span id="修改机器配置">修改机器配置</span></h2>
-<p>在VM上登陆<code>ceph-2</code>，修改<code>enp0s8</code>的IP。</p>
+<h2><span id="修改机器配置">修改机器配置</span></h2><p>在VM上登陆<code>ceph-2</code>，修改<code>enp0s8</code>的IP。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-enp0s8</span><br><span class="line">IPADDR=192.168.56.102</span><br></pre></td></tr></table></figure>
 <p>修改<code>hostname</code></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo ceph-2 &gt; /etc/hostname</span><br></pre></td></tr></table></figure>
@@ -457,7 +426,7 @@ ga('send', 'pageview');
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 zuoyang<br>
+            &copy; 2019 zuoyang<br>
                <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
                <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
                访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人

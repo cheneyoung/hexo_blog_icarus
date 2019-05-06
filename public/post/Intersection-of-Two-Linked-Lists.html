@@ -5,18 +5,18 @@
     
     <title>Intersection of Two Linked Lists | zuoyang&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="问题描述： For example, the following two linked lists: A:          a1 → a2 ​                   ↘ ​                     c1 → c2 → c3 ​                   ↗ B:     b1 → b2 → b3 begin to intersect at node c1.">
+    <meta name="description" content="问题描述： For example, the following two linked lists: A:          a1 → a2​                   ↘​                     c1 → c2 → c3​                   ↗B:     b1 → b2 → b3begin to intersect at node c1. Note">
 <meta name="keywords" content="C++,List">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Intersection of Two Linked Lists">
 <meta property="og:url" content="https://www.zuoyangblog.com/post/Intersection-of-Two-Linked-Lists.html">
 <meta property="og:site_name" content="zuoyang&#39;s blog">
-<meta property="og:description" content="问题描述： For example, the following two linked lists: A:          a1 → a2 ​                   ↘ ​                     c1 → c2 → c3 ​                   ↗ B:     b1 → b2 → b3 begin to intersect at node c1.">
+<meta property="og:description" content="问题描述： For example, the following two linked lists: A:          a1 → a2​                   ↘​                     c1 → c2 → c3​                   ↗B:     b1 → b2 → b3begin to intersect at node c1. Note">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2018-11-15T16:28:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Intersection of Two Linked Lists">
-<meta name="twitter:description" content="问题描述： For example, the following two linked lists: A:          a1 → a2 ​                   ↘ ​                     c1 → c2 → c3 ​                   ↗ B:     b1 → b2 → b3 begin to intersect at node c1.">
+<meta name="twitter:description" content="问题描述： For example, the following two linked lists: A:          a1 → a2​                   ↘​                     c1 → c2 → c3​                   ↗B:     b1 → b2 → b3begin to intersect at node c1. Note">
     
 
     
@@ -208,17 +208,9 @@ ga('send', 'pageview');
         
             <p><strong>问题描述：</strong></p>
 <p>For example, the following two linked lists:</p>
-<p>A:          a1 → a2<br>
-​                   ↘<br>
-​                     c1 → c2 → c3<br>
-​                   ↗<br>
-B:     b1 → b2 → b3<br>
-begin to intersect at node c1.</p>
+<p>A:          a1 → a2<br>​                   ↘<br>​                     c1 → c2 → c3<br>​                   ↗<br>B:     b1 → b2 → b3<br>begin to intersect at node c1.</p>
 <p>Notes:</p>
-<p>If the two linked lists have no intersection at all, return null.<br>
-The linked lists must retain their original structure after the function returns.<br>
-You may assume there are no cycles anywhere in the entire linked structure.<br>
-Your code should preferably run in O(n) time and use only O(1) memory.</p>
+<p>If the two linked lists have no intersection at all, return null.<br>The linked lists must retain their original structure after the function returns.<br>You may assume there are no cycles anywhere in the entire linked structure.<br>Your code should preferably run in O(n) time and use only O(1) memory.</p>
 <p><strong>解决思路：</strong></p>
 <p>这题要求的时间复杂度是O(n)和空间复杂度O(1)，所以只能用以下方法解决：(1)首先分别求出两个单链表的长度lenA和lenB；(2)求出两个链表的长度差，然后将长链表的比较位置移到长度差的位置，因为这些位置上的两个链表的元素是肯定不相同的；(3)此时，两个链表的长度一致，在分别依次比较元素即可</p>
 <p><strong>代码：</strong></p>
@@ -287,7 +279,7 @@ Your code should preferably run in O(n) time and use only O(1) memory.</p>
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018 zuoyang<br>
+            &copy; 2019 zuoyang<br>
                <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
                <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
                访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人
